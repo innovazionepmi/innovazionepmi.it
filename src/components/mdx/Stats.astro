@@ -1,0 +1,17 @@
+---
+// Fascia di numeri. Uso: <Stats items={[{ v: '−70%', l: 'Tempo di ricerca' }]} />
+interface Props { items: { v: string; l: string }[] }
+const { items } = Astro.props;
+---
+
+<ul class="stats not-prose">
+  {items.map((i) => <li><strong>{i.v}</strong><span>{i.l}</span></li>)}
+</ul>
+
+<style>
+  .stats { list-style: none; max-width: none; margin: 2.2rem 0; padding: 1.8rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; background: var(--ink); color: #fff; border-radius: var(--radius); text-align: center; }
+  .stats > li { padding: 0; margin: 0; }
+  .stats > li::before { display: none; }
+  strong { display: block; font-family: var(--font-head); font-size: 2.2rem; line-height: 1.1; color: var(--accent-light); }
+  span { font-size: .9rem; color: #c1c8d1; }
+</style>

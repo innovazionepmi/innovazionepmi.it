@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { site } from '../data/site';
+
+const crumbs = [{ name: 'Contatti', path: '/contatti/' }];
+---
+
+<Base title="Contatti" description="Contatta Innovazione PMI per una consulenza su innovazione dei processi, automazione e intelligenza artificiale: scrivici e ti ricontattiamo." crumbs={crumbs} webPageType="ContactPage">
+  <section class="head">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <p class="eyebrow">Contatti</p>
+      <h1>Parliamo della tua <span class="mark">azienda</span></h1>
+      <p class="lead">Raccontaci in breve di cosa ha bisogno la tua PMI. Puoi usare il form qui sotto o scriverci a <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+  <ContactForm title="Scrivici" intro="Ti ricontatteremo per fissare un appuntamento senza impegno." source="contatti" />
+</Base>
+
+<style>
+  .head { padding-block: clamp(3rem, 7vw, 5rem) 2.5rem; }
+  .lead { font-size: 1.15rem; color: var(--ink-2); max-width: 55ch; }
+</style>

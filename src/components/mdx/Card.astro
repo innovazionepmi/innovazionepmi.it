@@ -1,0 +1,20 @@
+---
+interface Props { title: string; n?: string; dark?: boolean }
+const { title, n, dark = false } = Astro.props;
+---
+
+<div class:list={['card', { dark }]}>
+  {n && <span class="n">{n}</span>}
+  <h3>{title}</h3>
+  <div class="t"><slot /></div>
+</div>
+
+<style>
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; border-top: 5px solid var(--c, var(--accent)); }
+  .card.dark { background: var(--ink); color: #fff; border-color: var(--ink); border-top-color: var(--c, var(--accent)); }
+  .n { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--c, var(--accent)); color: var(--on, #fff); font-family: var(--font-head); font-weight: 700; margin-bottom: .8rem; }
+  h3 { margin: 0 0 .5rem; font-size: 1.25rem; }
+  .t { font-size: 1rem; line-height: 1.6; color: inherit; }
+  .t :global(p) { margin: 0; }
+  .card:not(.dark) .t { color: var(--ink-2); }
+</style>

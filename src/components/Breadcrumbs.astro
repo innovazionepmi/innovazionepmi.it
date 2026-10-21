@@ -1,0 +1,25 @@
+---
+// Breadcrumb visibile (il markup JSON-LD corrispondente è generato dal layout via la prop `crumbs`).
+interface Props { items: { name: string; path: string }[] }
+const { items } = Astro.props;
+const all = [{ name: 'Home', path: '/' }, ...items];
+---
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    {all.map((c, i) => (
+      <li>
+        {i < all.length - 1 ? <a href={c.path}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .crumbs { margin-bottom: 1.2rem; font-size: .85rem; color: var(--ink-2); }
+  ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .3rem; }
+  li + li::before { content: '›'; margin-right: .3rem; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  li:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 36ch; }
+</style>

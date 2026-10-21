@@ -1,0 +1,230 @@
+---
+import '../styles/global.css';
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { site, servizi } from '../data/site';
+import { baseGraph, breadcrumbs, webPage, type Crumb } from '../lib/seo';
+import logo from '../assets/img/logo.png';
+import ogDefault from '../assets/img/img-innovazione-processi.jpg';
+
+interface Props {
+  title?: string; // titolo breve della pagina (il brand viene aggiunto)
+  seoTitle?: string; // <title> completo, se vuoi controllarlo del tutto
+  description?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  published?: Date;
+  modified?: Date;
+  crumbs?: Crumb[]; // breadcrumb (esclusa la home, aggiunta in automatico)
+  graph?: object[]; // nodi JSON-LD aggiuntivi della pagina
+  webPageType?: string;
+  dlEvent?: { event: string; form_name: string }; // evento dataLayer (conversione GTM) inviato al caricamento
+  metaPixel?: 'view' | 'lead'; // Meta Pixel (solo con consenso marketing): PageView, oppure anche evento Lead
+}
+const {
+  title, seoTitle, description = site.description, image, imageAlt = '', type = 'website',
+  noindex = false, published, modified, crumbs, graph = [], webPageType, metaPixel, dlEvent,
+} = Astro.props;
+
+const withBrand = title ? `${title} | ${site.name}` : '';
+const fullTitle = seoTitle ?? (title ? (withBrand.length <= 65 ? withBrand : title) : 'Innovazione PMI | Automazione AI per le PMI');
+const path = Astro.url.pathname;
+const canonical = new URL(path, site.url).toString();
+const abs = (p: string) => new URL(p, site.url).toString();
+
+// Immagine social 1200x630 (OG/Twitter): immagine della pagina oppure quella di default
+const ogSrc = await getImage({ src: image ?? ogDefault, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 });
+const ogImage = abs(ogSrc.src);
+const logoUrl = abs((await getImage({ src: logo, width: 600 })).src);
+
+const allCrumbs: Crumb[] = crumbs ? [{ name: 'Home', path: '/' }, ...crumbs] : [];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    ...baseGraph(logoUrl),
+    webPage({ path, name: fullTitle, description, image: ogImage, published, modified, type: webPageType, crumbs: allCrumbs.length > 1 }),
+    ...(allCrumbs.length > 1 ? [{ ...breadcrumbs(allCrumbs), '@id': `${canonical}#breadcrumb` }] : []),
+    ...graph,
+  ],
+};
+const isActive = (href: string) => path.startsWith(href) && href !== '/';
+// Banner e tracciamento solo in produzione (su localhost Iubenda non è configurato).
+const consent = import.meta.env.PROD;
+const fbq = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${site.metaPixelId}');fbq('track','PageView');${metaPixel === 'lead' ? "fbq('track','Lead');" : ''}`;
+const gtm = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${site.gtmId}');`;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="theme-color" content="#10151f" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="it" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title={`${site.name} – Blog`} href="/rss.xml" />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt || fullTitle} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="it_IT" />
+    {type === 'article' && published && <meta property="article:published_time" content={published.toISOString()} />}
+    {type === 'article' && <meta property="article:modified_time" content={(modified ?? published)?.toISOString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {dlEvent && <script is:inline set:html={`window.dataLayer=window.dataLayer||[];dataLayer.push(${JSON.stringify(dlEvent)});`} />}
+
+    {consent && (
+      <>
+        <!-- Iubenda Cookie Solution: gli script con type="text/plain" partono solo dopo il consenso -->
+        <script is:inline type="text/javascript" class="_iub_cs_skip" src={site.iubendaWidget}></script>
+        <!-- Google Tag Manager (finalità 4: misurazione) -->
+        <script is:inline type="text/plain" class="_iub_cs_activate" data-iub-purposes="4" set:html={gtm} />
+        {metaPixel && <script is:inline type="text/plain" class="_iub_cs_activate" data-iub-purposes="5" set:html={fbq} />}
+      </>
+    )}
+  </head>
+  <body>
+    <a class="skip" href="#main">Vai al contenuto</a>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="logo" href="/" aria-label={site.name}>
+          <Image src={logo} alt={site.name} width={200} height={93} widths={[100, 200]} sizes="100px" loading="eager" class="logo-img" />
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Apri il menu" />
+        <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+
+        <nav class="nav" aria-label="Principale">
+          <div class="dropdown">
+            <a href="/servizi/" class:list={['dd-label', { active: isActive('/servizi/') || servizi.some((s) => !s.external && isActive(s.href)) }]}>Servizi <span aria-hidden="true">▾</span></a>
+            <div class="dd-menu">
+              {servizi.map((s) => (
+                <a href={s.href} class:list={{ active: isActive(s.href) }} rel={s.external ? 'noopener' : undefined}>{s.label}{s.external ? ' ↗' : ''}</a>
+              ))}
+            </div>
+          </div>
+          <a href="/blog/" class:list={{ active: isActive('/blog/') }}>Blog</a>
+          <a href="/contatti/" class="btn btn--small">Contattaci</a>
+        </nav>
+      </div>
+    </header>
+
+    <script is:inline>
+      (function () {
+        var t = document.getElementById('nav-toggle');
+        if (!t) return;
+        var close = function () { t.checked = false; };
+        document.querySelectorAll('.nav a').forEach(function (a) { a.addEventListener('click', close); });
+        window.addEventListener('pageshow', close);
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+        close();
+      })();
+    </script>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap foot-grid">
+        <div>
+          <span class="foot-logo-bg"><Image src={logo} alt={site.name} width={200} height={93} widths={[100, 200]} sizes="100px" loading="lazy" class="foot-logo" /></span>
+          <p class="foot-note">Consulenza di innovazione, processi, automazione e marketing per le PMI.</p>
+        </div>
+        <div>
+          <h4>Servizi</h4>
+          <ul>
+            {servizi.map((s) => <li><a href={s.href} rel={s.external ? 'noopener' : undefined}>{s.label}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h4>Sito</h4>
+          <ul>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contatti/">Contatti</a></li>
+            <li><a href={site.privacyUrl} rel="noopener">Privacy e Cookie</a></li>
+            <li><a href="#" class="iubenda-cs-preferences-link">Preferenze cookie</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contatti</h4>
+          <ul>
+            <li>{site.city}</li>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap legal">© {new Date().getFullYear()} {site.name}. {site.name} è un brand di <a href={site.parent.url} rel="noopener">{site.parent.name}</a> · P.IVA {site.parent.vat}</div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  @media (min-width: 881px) { .site-header { background: rgba(255,255,255,.92); backdrop-filter: blur(10px); } }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 76px; }
+  .logo img { height: 54px; width: auto; }
+  .foot-logo-bg { display: inline-block; background: #fff; border-radius: 10px; padding: .3rem .6rem; }
+  .foot-logo { height: 46px; width: auto; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: #fff; padding: .6rem 1rem; z-index: 100; font-weight: 700; }
+  .skip:focus { left: 1rem; top: 1rem; }
+  .nav { display: flex; align-items: center; gap: 1.6rem; font-family: var(--font-head); font-weight: 600; font-size: .92rem; }
+  .nav a { text-decoration: none; padding: .3rem 0; }
+  .nav a:not(.btn):hover, .nav a.active { text-decoration: underline; text-decoration-color: var(--magenta); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+  .btn--small { padding: .55rem 1.2rem; font-size: .88rem; color: #fff; }
+  .dropdown { position: relative; }
+  .dd-menu { position: absolute; top: 100%; left: -1rem; min-width: 290px; padding: .6rem; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 18px 40px rgba(16,21,31,.14); display: none; flex-direction: column; }
+  .dropdown:hover .dd-menu, .dropdown:focus-within .dd-menu { display: flex; }
+  .dd-menu a { padding: .65rem 1rem; border-radius: 8px; }
+  .dd-menu a:hover { background: var(--accent-soft); text-decoration: none !important; }
+  .nav-toggle, .burger { display: none; }
+
+  @media (max-width: 980px) {
+    .burger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: .5rem; z-index: 60; }
+    .burger span { width: 24px; height: 2px; background: currentColor; transition: .2s; }
+    .nav .btn--small { color: var(--ink); background: #fff; border-color: #fff; }
+    .nav { position: fixed; inset: 0; background: var(--ink); color: #fff; flex-direction: column; justify-content: center; gap: 1.4rem; font-size: 1.3rem; transform: translateY(-100%); visibility: hidden; transition: transform .3s ease, visibility 0s linear .3s; z-index: 55; overflow-y: auto; }
+    .nav-toggle:checked ~ .nav { transform: none; visibility: visible; transition: transform .3s ease; }
+    body:has(.nav-toggle:checked) { overflow: hidden; }
+    .nav-toggle:checked ~ .burger { color: #fff; }
+    .nav-toggle:checked ~ .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-toggle { display: block; position: absolute; opacity: 0; }
+    .dropdown { text-align: center; }
+    .dd-menu { display: flex; position: static; background: transparent; color: #fff; border: 0; box-shadow: none; font-size: 1rem; padding: .3rem 0 0; gap: .2rem; }
+    .dd-menu a:hover { background: transparent; }
+    .dd-label span { display: none; }
+  }
+
+  .site-footer { background: var(--ink-deep); color: #c1c8d1; padding-top: 4rem; font-size: .95rem; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 2.5rem; padding-bottom: 3rem; }
+  .site-footer h4 { color: #fff; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1rem; }
+  .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+  .site-footer a { text-decoration: none; }
+  .site-footer a:hover { color: var(--accent-light); }
+  .foot-note { margin-top: 1rem; max-width: 30ch; color: #9aa6b8; }
+  .legal { border-top: 1px solid #22344f; padding-block: 1.4rem; color: #8a97ab; font-size: .85rem; }
+  .legal a { text-decoration: underline; }
+  @media (max-width: 880px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .foot-grid { grid-template-columns: 1fr; } }
+</style>

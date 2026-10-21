@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Richiesta ricevuta" description="Abbiamo ricevuto la tua richiesta: ti contatteremo al più presto." noindex dlEvent={{ event: 'lead_form_submit', form_name: 'contatti_sito' }}>
+  <section class="section">
+    <div class="wrap ty">
+      <p class="eyebrow">Grazie</p>
+      <h1>Richiesta <span class="mark">ricevuta</span></h1>
+      <p class="lead">Ti contatteremo al più presto.</p>
+      <p><a class="btn" href="/blog/">Intanto leggi il blog</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ty { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); }
+</style>

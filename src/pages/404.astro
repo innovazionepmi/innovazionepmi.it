@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { servizi } from '../data/site';
+---
+
+<Base title="Pagina non trovata" description="La pagina che cerchi non esiste più o è stata spostata." noindex>
+  <section class="section">
+    <div class="wrap nf">
+      <p class="eyebrow">Errore 404</p>
+      <h1>Questa pagina non <span class="mark">esiste più</span></h1>
+      <p class="lead">Il sito è stato rinnovato e qualche indirizzo è cambiato. Da qui puoi ripartire:</p>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/articoli/">Tutti gli articoli</a></li>
+        {servizi.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); }
+  ul { padding-left: 1.2rem; display: grid; gap: .4rem; }
+</style>

@@ -1,0 +1,29 @@
+---
+// Esempio di conversazione. Uso: <ChatDemo turns={[{ who: 'Tu', text: '…' }, { who: 'AIBox', text: '…', source: 'file.pdf — pag. 12' }]} caption="…" />
+interface Props { turns: { who: string; text: string; source?: string }[]; caption?: string }
+const { turns, caption } = Astro.props;
+---
+
+<figure class="chat not-prose">
+  <div class="log">
+    {turns.map((t) => (
+      <div class:list={['turn', { bot: t.who !== 'Tu' }]}>
+        <span class="who">{t.who}</span>
+        <p>{t.text}</p>
+        {t.source && <small>{t.source}</small>}
+      </div>
+    ))}
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .chat { margin: 2rem 0; }
+  .log { display: grid; gap: .8rem; padding: 1.4rem; background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); }
+  .turn { max-width: 88%; padding: .8rem 1rem; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
+  .turn.bot { margin-left: auto; background: var(--accent-soft); border-color: transparent; }
+  .who { font-family: var(--font-head); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-strong); }
+  p { margin: .2rem 0 0; font-size: .98rem; }
+  small { display: block; margin-top: .4rem; color: var(--ink-2); }
+  figcaption { margin-top: .6rem; font-size: .85rem; color: var(--ink-2); }
+</style>

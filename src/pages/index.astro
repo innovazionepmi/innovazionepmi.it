@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { aree, percorsi, site } from '../data/site';
+
+const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 4);
+---
+
+<Base seoTitle="Innovazione PMI | Automazione AI per le PMI" description="Innovazione PMI aiuta le PMI italiane a innovare e automatizzare i processi di lavoro con l’introduzione dell’Intelligenza Artificiale.">
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"><source src="/media/hero-pmi.mp4" type="video/mp4" /></video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="wrap hero-in on-dark">
+      <p class="eyebrow">Siamo i consulenti di Innovazione PMI</p>
+      <h1>Portiamo prosperità alle PMI: <span class="c-t">Innovazione</span>, <span class="c-m">Automazione</span>, Intelligenza Artificiale, <span class="c-g">Marketing</span></h1>
+      <p class="hero-lead">Aiutiamo le imprese italiane a innovare, automatizzare e crescere, per restare competitive e rendere l’Italia un posto migliore.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#servizi">Scopri dove interveniamo</a>
+        <a class="btn btn--ghost" href="/contatti/">Contattaci</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prosperita">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Perché esistiamo</p>
+        <h2>Abbiamo a cuore la prosperità delle PMI italiane</h2>
+      </div>
+      <div class="prose-l">
+        <p><strong>Innovare i processi</strong> vuol dire eliminare procedure lente e superate. Aiutiamo le PMI a semplificare il lavoro, ridurre sprechi e costruire un’organizzazione più chiara, fatta di flussi semplici dove tempi e responsabilità sono ben definiti.</p>
+        <p>Con l’<strong>automazione intelligente</strong> liberiamo tempo e risorse. Le attività ripetitive vengono gestite da sistemi digitali intelligenti, così il team può concentrarsi su ciò che conta davvero.</p>
+        <p>Il <strong>marketing e lo sviluppo business</strong> trasformano l’efficienza in crescita: creiamo strategie su misura per aumentare visibilità, attrarre clienti e aprire nuove opportunità.</p>
+        <p>Il nostro obiettivo è portare prosperità alle PMI italiane: più competitività, più sostenibilità, più risultati concreti.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="servizi">
+    <div class="wrap">
+      <p class="eyebrow">Dove interveniamo</p>
+      <h2>Tre aree per far crescere la tua impresa</h2>
+      <div class="cards rot">
+        {aree.map((s) => (
+          <a class="svc" href={s.href} rel={s.external ? 'noopener' : undefined}>
+            <Image src={s.icon} alt={s.title} widths={[120, 240]} sizes="120px" loading="lazy" />
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <span class="svc-go">Scopri di più →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="percorsi">
+    <div class="wrap">
+      <p class="eyebrow">Prodotti e percorsi</p>
+      <h2>Da dove partire</h2>
+      <div class="cards two rot">
+        {percorsi.map((s) => (
+          <a class="svc" href={s.href}>
+            <span class="kicker">{s.kicker}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <span class="svc-go">Scopri di più →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="eyebrow">Dal blog</p>
+          <h2>Letture utili su AI e automazione in azienda</h2>
+        </div>
+        <a class="btn btn--ghost" href="/blog/">Tutti gli articoli</a>
+      </div>
+      <div class="art-grid">
+        {articoli.map((a) => <ArticleCard post={a} />)}
+      </div>
+    </div>
+  </section>
+
+  <ContactForm source="home" />
+</Base>
+
+<style>
+  .hero { color: #fff; background: radial-gradient(60% 70% at 25% 15%, rgba(31,182,207,.22), transparent 60%), radial-gradient(50% 60% at 85% 85%, rgba(196,61,143,.2), transparent 60%), linear-gradient(180deg, var(--ink-deep), var(--ink)); }
+  .hero { position: relative; overflow: hidden; }
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,15,22,.82) 0%, rgba(11,15,22,.6) 55%, rgba(11,15,22,.35) 100%); }
+  .hero-in { position: relative; z-index: 1; padding-block: clamp(5rem, 11vw, 8.5rem); }
+  @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } .hero-overlay { display: none; } }
+  .hero h1 { max-width: 20ch; margin-bottom: .6em; font-size: clamp(2rem, 4.8vw, 3.6rem); }
+  .c-t { color: var(--accent-light); } .c-m { color: #dd7bb4; } .c-g { color: var(--gold); }
+  .hero .eyebrow { color: var(--accent-light); }
+  .hero-lead { font-size: clamp(1.05rem, 1.8vw, 1.3rem); max-width: 48ch; color: #e6eaf0; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+
+  .split { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .prose-l p { margin: 0 0 1.1em; font-size: 1.05rem; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .svc { background: #fff; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent)); padding: 1.8rem; display: flex; flex-direction: column; gap: .5rem; transition: transform .2s, box-shadow .2s; }
+  .svc:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(14,30,54,.12); }
+  .svc :global(img) { width: 84px; height: 84px; object-fit: contain; margin-bottom: .6rem; }
+  .svc h3 { margin: 0; }
+  .svc p { margin: 0; color: var(--ink-2); font-size: .98rem; }
+  .svc-go { margin-top: auto; padding-top: .8rem; font-family: var(--font-head); font-weight: 700; }
+
+  .cards.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .kicker { font-family: var(--font-head); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--magenta); }
+  .head-row { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .head-row h2 { margin: 0; max-width: 24ch; }
+  .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.6rem; }
+
+  @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
+</style>

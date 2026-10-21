@@ -1,0 +1,21 @@
+---
+// Riquadro evidenziato. Uso: <Callout variant="dark">testo</Callout>  (variant: lime | dark | soft)
+interface Props { variant?: 'lime' | 'dark' | 'soft'; title?: string }
+const { variant = 'soft', title } = Astro.props;
+---
+
+<aside class={`callout ${variant}`}>
+  {title && <h3>{title}</h3>}
+  <div><slot /></div>
+</aside>
+
+<style>
+  .callout { border-radius: var(--radius); padding: 1.8rem 2rem; margin-block: 2.2rem; font-size: 1.15rem; line-height: 1.6; }
+  .callout h3 { margin: 0 0 .5rem; }
+  .callout :global(p) { margin: 0; }
+  .callout :global(p + p) { margin-top: .8em; }
+  .soft { background: var(--accent-soft); border-left: 6px solid var(--accent); }
+  .lime { background: var(--accent); color: #fff; }
+  .dark { background: var(--ink); color: #fff; }
+  .dark :global(a) { color: var(--accent); }
+</style>

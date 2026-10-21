@@ -1,0 +1,120 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Faq from '../../components/Faq.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../data/site';
+import { article, faqPage } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('articoli')).sort((a, b) => +b.data.date - +a.data.date);
+  return all.map((post) => {
+    const sameCat = all.filter((p) => p.id !== post.id && p.data.categories.some((c) => post.data.categories.includes(c)));
+    const rest = all.filter((p) => p.id !== post.id && !sameCat.includes(p));
+    return { params: { slug: post.id }, props: { post, related: [...sameCat, ...rest].slice(0, 3) } };
+  });
+}
+
+const { post, related } = Astro.props;
+const { Content, headings } = await render(post);
+const d = post.data;
+const path = `/blog/${post.id}/`;
+const fmt = (x: Date) => x.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
+const minutes = Math.max(1, Math.round(words / 200));
+const toc = headings.filter((h) => h.depth === 2);
+const showToc = toc.length >= 4;
+const coverUrl = d.cover ? new URL((await getImage({ src: d.cover, width: 1200 })).src, site.url).toString() : undefined;
+const crumbs = [{ name: 'Blog', path: '/blog/' }, { name: d.title, path }];
+const graph = [
+  article({ path, title: d.title, description: d.description, image: coverUrl, published: d.date, modified: d.updated, section: d.categories[0], words }),
+  ...(d.faq?.length ? [faqPage(d.faq)] : []),
+];
+---
+
+<Base title={d.title} seoTitle={d.seoTitle} description={d.description} image={d.cover} imageAlt={d.coverAlt ?? d.title} type="article" published={d.date} modified={d.updated ?? d.date} crumbs={crumbs} graph={graph} webPageType="WebPage">
+  <article>
+    <header class="wrap art-head">
+      <Breadcrumbs items={crumbs} />
+      <h1>{d.title}</h1>
+      <p class="meta">
+        di <a href="/">Innovazione PMI</a> ·
+        <time datetime={d.date.toISOString().slice(0, 10)}>{fmt(d.date)}</time>
+        {d.updated && <> · aggiornato il <time datetime={d.updated.toISOString().slice(0, 10)}>{fmt(d.updated)}</time></>}
+        · {minutes} min di lettura
+      </p>
+    </header>
+    {d.cover && (
+      <div class="wrap cover">
+        <Image src={d.cover} alt={d.coverAlt ?? ''} widths={[640, 960, 1200]} sizes="(max-width: 1000px) 92vw, 1000px" loading="eager" fetchpriority="high" />
+      </div>
+    )}
+    <div class="wrap body">
+      {showToc && (
+        <details class="toc" open>
+          <summary>In questo articolo</summary>
+          <nav aria-label="Indice dell’articolo">
+            <ol>{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+          </nav>
+        </details>
+        <script is:inline>
+          // L'indice è aperto di default; su schermi stretti si chiude per far partire subito il testo.
+          if (window.matchMedia('(max-width: 799px)').matches) document.querySelector('details.toc')?.removeAttribute('open');
+        </script>
+      )}
+      <div class="prose"><Content /></div>
+
+      {d.faq && <div class="faq-wrap"><Faq items={d.faq} /></div>}
+
+      <aside class="author" aria-label="Autore">
+        <div>
+          <p class="who"><strong>{site.name}</strong> · consulenza per le PMI</p>
+          <p>Aiutiamo le PMI italiane a innovare i processi, automatizzare il lavoro ripetitivo e introdurre l’intelligenza artificiale in modo concreto. <a href="/contatti/">Contattaci</a></p>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <section class="cta-box on-dark">
+    <div class="wrap">
+      <h2>Vuoi applicarlo alla tua azienda?</h2>
+      <p>Raccontaci la situazione della tua azienda: ti ricontattiamo per un primo colloquio senza impegno.</p>
+      <a class="btn" href="/contatti/">Parliamone</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Continua a leggere</h2>
+      <div class="more">{related.map((a) => <ArticleCard post={a} />)}</div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .art-head { max-width: 760px; padding-block: clamp(2rem, 5vw, 3.5rem) 1.5rem; }
+  .art-head h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); }
+  .meta { color: var(--ink-2); margin: 0; font-size: .98rem; }
+  .cover { max-width: 760px; }
+  .cover :global(img) { width: 100%; max-height: 460px; height: auto; object-fit: cover; border-radius: var(--radius); border-bottom: 6px solid var(--accent); }
+  .body { padding-block: 3rem 4rem; }
+  .prose { font-size: 1.1rem; max-width: 760px; }
+  .prose :global(h2), .prose :global(h3) { scroll-margin-top: 100px; }
+  .toc { max-width: 760px; margin: 0 auto 2.5rem; padding: 0 1.6rem; background: var(--paper-2); border-radius: var(--radius); border-left: 5px solid var(--accent); }
+  .toc summary { cursor: pointer; list-style: none; padding: 1rem 1.8rem 1rem 0; font-family: var(--font-head); font-weight: 700; position: relative; }
+  .toc summary::-webkit-details-marker { display: none; }
+  .toc summary::after { content: '▾'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); transition: transform .15s; }
+  .toc[open] summary::after { transform: translateY(-50%) rotate(180deg); }
+  .toc ol { margin: 0; padding: 0 0 1.2rem 1.2rem; display: grid; gap: .3rem; font-size: .98rem; }
+  @media (max-width: 799px) { .toc { margin-bottom: 1.8rem; } .cover :global(img) { max-height: 200px; } }
+  .faq-wrap { margin-top: 3.5rem; }
+  .faq-wrap :global(.faq) { max-width: 760px; }
+  .author { max-width: 760px; margin: 3.5rem auto 0; display: flex; gap: 1.2rem; align-items: center; padding: 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); }
+  .author :global(img) { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex: none; }
+  .author p { margin: 0; font-size: .98rem; color: var(--ink-2); }
+  .author .who { color: var(--ink); margin-bottom: .3rem; }
+  .cta-box { background: var(--ink); color: #fff; text-align: center; padding-block: 4rem; }
+  .more { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; margin-top: 2rem; }
+</style>

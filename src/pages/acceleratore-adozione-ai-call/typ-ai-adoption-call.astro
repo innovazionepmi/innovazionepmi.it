@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Richiesta ricevuta: prenota la call" description="Abbiamo ricevuto i tuoi dati: l’ultimo passo è prenotare la tua call gratuita di 30 minuti con un consulente." noindex metaPixel="lead" dlEvent={{ event: 'lead_form_submit', form_name: 'acceleratore_adozione_ai_call' }}>
+  <section class="section">
+    <div class="wrap ty">
+      <p class="eyebrow">Acceleratore per Adozione AI</p>
+      <h1>Fatto. Ora scegli il momento della <span class="mark">call</span></h1>
+      <p class="lead">Abbiamo ricevuto i tuoi dati. L’ultimo passo è prenotare la tua call gratuita di 30 minuti con un consulente: scegli tu giorno e ora.</p>
+      <ol>
+        <li>Scegli giorno e ora dal calendario che si apre cliccando qui sotto.</li>
+        <li>Ricevi la conferma via email con tutti i dettagli per collegarti.</li>
+        <li>Ci racconti la tua azienda e individuiamo insieme da dove iniziare con l’AI.</li>
+      </ol>
+      <p class="cta"><a class="btn btn--accent" href="https://meetings.hubspot.com/info9088" rel="noopener">Prenota la call gratuita</a> <a class="btn btn--ghost" href="/">Torna al sito</a></p>
+      <p class="note">Nessun impegno: la call serve a capire se e dove l’AI ha senso nella tua azienda.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ty { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); }
+  ol { padding-left: 1.2rem; display: grid; gap: .6rem; margin-block: 1.5rem; }
+  .cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .note { color: var(--ink-2); font-size: .95rem; }
+</style>

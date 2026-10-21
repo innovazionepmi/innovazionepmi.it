@@ -1,0 +1,80 @@
+---
+// Form lead delle ex landing: invia i dati in POST (JSON) al webhook n8n, poi porta alla thank-you.
+// Come nelle landing: accetta solo email aziendali, timeout di 6 s e redirect comunque (la thank-you gestisce la conversione).
+interface Props {
+  title?: string; intro?: string; endpoint: string; redirect: string;
+  phone?: boolean; submitLabel?: string; note?: string;
+}
+const {
+  title = 'Contattaci', intro, endpoint, redirect, phone = false, submitLabel = 'Invia', note = 'Usa l’email della tua azienda: niente Gmail, Outlook o altri indirizzi personali.',
+} = Astro.props;
+---
+
+<section class="contact" id="contact">
+  <div class="wrap"><div class="narrow">
+    <h2>{title}</h2>
+    {intro && <p class="intro">{intro}</p>}
+    <form class="lf" data-endpoint={endpoint} data-redirect={redirect} data-phone={phone ? '1' : ''} novalidate>
+      <p class="req">* Tutti i campi sono obbligatori</p>
+      <label>Nome *<input type="text" name="first_name" autocomplete="given-name" required /></label>
+      <label>Cognome *<input type="text" name="last_name" autocomplete="family-name" required /></label>
+      <label>Email aziendale *<input type="email" name="email" autocomplete="email" required /></label>
+      <label>Azienda *<input type="text" name="company" autocomplete="organization" required /></label>
+      {phone && <label>Telefono *<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required /></label>}
+      <p class="err" role="alert" hidden></p>
+      <div class="full"><button class="btn btn--accent" type="submit">{submitLabel}</button></div>
+      <p class="note full">{note}</p>
+    </form>
+  </div></div>
+</section>
+
+<script>
+  const FREE = ['gmail.com','googlemail.com','outlook.com','outlook.it','hotmail.com','hotmail.it','live.com','live.it','msn.com','yahoo.com','yahoo.it','icloud.com','me.com','mac.com','aol.com','gmx.com','gmx.net','mail.com','protonmail.com','proton.me','libero.it','virgilio.it','alice.it','tin.it','tiscali.it','fastwebnet.it','email.it','yandex.com','zoho.com','inbox.com'];
+  document.querySelectorAll<HTMLFormElement>('form.lf').forEach((form) => {
+    const err = form.querySelector('.err') as HTMLElement;
+    const btn = form.querySelector('button') as HTMLButtonElement;
+    const field = (n: string) => form.elements.namedItem(n) as HTMLInputElement | null;
+    const fail = (msg: string, f?: HTMLInputElement | null) => {
+      err.textContent = msg; err.hidden = false;
+      form.querySelectorAll('.bad').forEach((x) => x.classList.remove('bad'));
+      f?.classList.add('bad'); f?.focus();
+    };
+    form.addEventListener('input', () => { err.hidden = true; form.querySelectorAll('.bad').forEach((x) => x.classList.remove('bad')); });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = (n: string) => (field(n)?.value ?? '').trim();
+      const payload: Record<string, string> = { first_name: v('first_name'), last_name: v('last_name'), email: v('email'), company: v('company') };
+      if (form.dataset.phone) payload.phone = v('phone');
+      if (Object.values(payload).some((x) => !x)) return fail('Compila tutti i campi per continuare.');
+      if (form.dataset.phone) {
+        const digits = payload.phone.replace(/\D/g, '');
+        if (!/^[+\d][\d\s().\/-]*$/.test(payload.phone) || digits.length < 6 || digits.length > 15) return fail('Inserisci un numero di telefono valido.', field('phone'));
+      }
+      const m = payload.email.match(/^[^\s@]+@([^\s@]+\.[^\s@]+)$/);
+      if (!m) return fail('Inserisci un indirizzo email valido.', field('email'));
+      if (FREE.includes(m[1].toLowerCase())) return fail('Usa l’email della tua azienda: non accettiamo indirizzi Gmail, Outlook o altri provider personali.', field('email'));
+      btn.disabled = true; btn.textContent = 'Invio in corso…';
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 6000);
+      fetch(form.dataset.endpoint!, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl.signal })
+        .catch((e) => console.error('Invio form fallito:', e))
+        .finally(() => { clearTimeout(t); location.href = form.dataset.redirect!; });
+    });
+  });
+</script>
+
+<style>
+  .contact { background: var(--paper-2); padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+  .narrow { max-width: 760px; }
+  .intro { color: var(--ink-2); }
+  .lf { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.2rem; margin-top: 1.5rem; }
+  .full, .req, .err { grid-column: 1 / -1; }
+  .req { margin: 0; font-size: .85rem; color: var(--ink-2); }
+  label { display: grid; gap: .35rem; font-size: .9rem; font-weight: 600; }
+  input { font: inherit; padding: .75rem .9rem; border: 1px solid #c1c8d1; border-radius: 10px; background: #fff; color: var(--ink); }
+  input:focus { outline: 3px solid var(--accent-soft); border-color: var(--accent); }
+  input.bad { border-color: #d1473f; background: #fbe6e4; }
+  .err { margin: 0; padding: .7rem 1rem; border-radius: 10px; background: #fbe6e4; color: #8a2b25; font-size: .92rem; }
+  .note { margin: 0; font-size: .88rem; color: var(--ink-2); }
+  @media (max-width: 640px) { .lf { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Richiesta ricevuta: Acceleratore per Adozione AI" description="Abbiamo ricevuto i tuoi dati: il questionario personale dell’Acceleratore per Adozione AI ti aspetta." noindex metaPixel="lead" dlEvent={{ event: 'lead_form_submit', form_name: 'acceleratore_adozione_ai' }}>
+  <section class="section">
+    <div class="wrap ty">
+      <p class="eyebrow">Acceleratore per Adozione AI</p>
+      <h1>Fatto. Ora tocca al <span class="mark">questionario</span></h1>
+      <p class="lead">Abbiamo ricevuto i tuoi dati. Il questionario è pronto: aprilo quando hai qualche minuto senza interruzioni, va completato in un’unica sessione.</p>
+      <ol>
+        <li>Ricevi anche un’email di conferma con lo stesso link, per ritrovarlo quando vuoi.</li>
+        <li>Rispondi al questionario: le domande si adattano a quello che racconti della tua azienda.</li>
+        <li>Alla fine prenoti la consulenza gratuita. Si parte già dal punto giusto, non da zero.</li>
+      </ol>
+      <!-- Il link al questionario personale arriva dal form HubSpot (embed del questionario, o link via email). -->
+      <p class="note">Se il link al questionario non è ancora attivo, arriverà comunque via email nei prossimi minuti.</p>
+      <p><a class="btn btn--ghost" href="/">Torna al sito</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ty { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); }
+  ol { padding-left: 1.2rem; display: grid; gap: .6rem; margin-block: 1.5rem; }
+  .note { color: var(--ink-2); font-size: .95rem; }
+</style>

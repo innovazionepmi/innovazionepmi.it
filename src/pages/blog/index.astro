@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { site } from '../../data/site';
+
+const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date - +a.data.date);
+const crumbs = [{ name: 'Blog', path: '/blog/' }];
+const graph = [{
+  '@type': 'ItemList',
+  itemListElement: articoli.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: new URL(`/blog/${a.id}/`, site.url).toString(), name: a.data.title })),
+}];
+---
+
+<Base title="Blog: AI e automazione per le PMI" description="Contenuti utili per l’innovazione delle PMI: intelligenza artificiale, automazione dei processi e gestione della conoscenza in azienda." crumbs={crumbs} graph={graph} webPageType="CollectionPage">
+  <section class="head">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <p class="eyebrow">Blog</p>
+      <h1>Contenuti utili per l’<span class="mark">innovazione</span> delle PMI</h1>
+      <p class="lead">Intelligenza artificiale, automazione dei processi e gestione dei dati: idee pratiche per imprenditori e PMI.</p>
+    </div>
+  </section>
+  <section class="section list">
+    <div class="wrap grid">
+      {articoli.map((a) => <ArticleCard post={a} />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { padding-block: clamp(3rem, 7vw, 5.5rem) 1rem; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 55ch; }
+  .list { padding-top: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
+</style>

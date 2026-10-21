@@ -1,0 +1,112 @@
+---
+title: "AIBox: la knowledge base intelligente per la tua PMI"
+seoTitle: "AIBox: knowledge base aziendale con AI per PMI | Innovazione PMI"
+description: "AIBox trasforma documenti e procedure aziendali in una knowledge base da interrogare in linguaggio naturale: risposte precise, con la fonte."
+eyebrow: "Servizi"
+image: "../../assets/img/aibox-logo.png"
+imageFit: contain
+ctaLabel: "Richiedi una demo gratuita"
+imageAlt: "AIBox, la knowledge base aziendale di Innovazione PMI"
+service: "AIBox – Knowledge base aziendale con AI"
+hubspotForm: "3cb12887-8c50-4760-baba-0b2b0b6faf61"
+formTitle: "Pronto a recuperare il tempo perso?"
+formIntro: "Prenota una demo di 20 minuti. Ti mostriamo AIBox in azione con un esempio reale, senza impegno."
+faq:
+  - q: "I miei documenti sono al sicuro?"
+    a: "Sì. I tuoi documenti risiedono su un’infrastruttura dedicata alla tua azienda, non condivisa con altri clienti. L’accesso è protetto da autenticazione e i dati non vengono mai utilizzati per addestrare modelli AI esterni."
+  - q: "Che tipo di documenti posso caricare?"
+    a: "PDF, Word, Excel, file di testo, presentazioni. Se il contenuto è testuale, possiamo indicizzarlo. Per formati specifici valutiamo caso per caso durante la fase di setup."
+  - q: "Quanto tempo serve per essere operativi?"
+    a: "In media 3–4 settimane dalla raccolta dei materiali al go-live. Il fattore principale è la velocità con cui vengono forniti i documenti da indicizzare."
+  - q: "Posso aggiornare i documenti nel tempo?"
+    a: "Certo. Il sistema è pensato per essere aggiornato continuamente: puoi aggiungere, modificare o rimuovere documenti in qualsiasi momento e la knowledge base si aggiorna di conseguenza."
+  - q: "AIBox è diverso da ChatGPT?"
+    a: "Sì. ChatGPT risponde sulla base di una conoscenza generica, AIBox risponde esclusivamente sulla base dei tuoi documenti aziendali. Non inventa e non generalizza: se non trova la risposta nei tuoi materiali, lo comunica chiaramente."
+  - q: "Serve competenza tecnica per usarlo?"
+    a: "No. L’interfaccia è una chat, come quelle che usi ogni giorno: scrivi la domanda e ricevi la risposta. Forniamo una sessione di formazione per il team, ma in genere bastano pochi minuti per iniziare."
+  - q: "Come funziona l’apprendimento collaborativo?"
+    a: "Quando un utente fa una domanda e la risposta non è nella knowledge base, il sistema la inoltra ai referenti interni competenti. Questi rispondono tramite la console, la risposta viene inviata al richiedente e aggiunta alla knowledge base: dalla volta successiva è disponibile per tutti."
+---
+
+import Cards from '../../components/mdx/Cards.astro';
+import Card from '../../components/mdx/Card.astro';
+import Callout from '../../components/mdx/Callout.astro';
+import Stats from '../../components/mdx/Stats.astro';
+import ChatDemo from '../../components/mdx/ChatDemo.astro';
+
+## Il sapere della tua azienda, sempre accessibile
+
+AIBox trasforma documenti, procedure e know-how aziendale in una knowledge base interrogabile con linguaggio naturale. **Risposte precise, in pochi secondi.**
+
+<ChatDemo
+  turns={[
+    { who: 'Tu', text: 'Qual è la procedura per gestire un reso internazionale?' },
+    { who: 'AIBox', text: 'Per i resi internazionali la procedura prevede 4 passaggi: 1) verifica del codice tracking nel gestionale, 2) compilazione del modulo RMA-INT con causale, 3) comunicazione al magazzino estero entro 48 ore, 4) emissione della nota di credito dopo conferma di ricezione.', source: 'Fonte: Procedura_Logistica_v3.pdf, pag. 12' },
+  ]}
+  caption="Esempio illustrativo di una risposta di AIBox."
+/>
+
+## Il problema: quanto know-how va perso ogni giorno?
+
+Le PMI italiane perdono decine di ore a settimana cercando informazioni che esistono già, ma sono sparse, nascoste o nella testa di qualcuno.
+
+<Cards cols={2}>
+  <Card title="Documenti sparsi ovunque">Procedure in cartelle condivise, email, WhatsApp, Excel. Nessuno sa dove trovare l’ultima versione aggiornata.</Card>
+  <Card title="Know-how nelle persone">Le conoscenze critiche esistono solo nella testa di poche persone. Quando si assentano, l’azienda si blocca.</Card>
+  <Card title="Tempo perso in ricerche">Il 20–30% del tempo lavorativo viene speso cercando informazioni. Un costo nascosto che nessuno misura.</Card>
+  <Card title="Onboarding lento">Ogni nuovo inserimento richiede settimane di affiancamento: le stesse domande, le stesse spiegazioni, ogni volta.</Card>
+</Cards>
+
+## Cos’è AIBox: non un chatbot generico, il tuo assistente aziendale
+
+AIBox indicizza i documenti interni della tua azienda (manuali, procedure, regolamenti, FAQ) e li rende interrogabili in linguaggio naturale. Ogni risposta viene costruita a partire dalle tue fonti, con riferimenti puntuali.
+
+- Risposte basate solo sui tuoi documenti reali.
+- Citazione della fonte per ogni risposta.
+- Interfaccia web accessibile da qualsiasi dispositivo.
+- Aggiornamento continuo della base di conoscenza.
+- Nessuna “allucinazione”: se non trova la risposta, lo dice.
+- Apprendimento collaborativo dal team.
+
+## Guarda AIBox al lavoro
+
+Una registrazione reale: un operatore interroga la knowledge base aziendale e ottiene risposte precise in pochi secondi.
+
+<video src="/media/esempio-aibox-1.mp4" autoplay muted loop playsinline controls preload="metadata" aria-label="Demo di AIBox: un operatore interroga la knowledge base aziendale"></video>
+
+## Una knowledge base che cresce con il tuo team
+
+<Callout variant="soft">
+Le knowledge base tradizionali restano ferme a quello che ci carichi dentro. AIBox fa un passo in più: quando non ha una risposta, attiva un ciclo di apprendimento collaborativo che coinvolge le persone giuste e arricchisce la base di conoscenza in modo continuo.
+
+Il risultato è un sistema che diventa più intelligente ogni giorno, alimentato dall’esperienza reale del tuo team.
+</Callout>
+
+## Casi d’uso: chi lo usa e come
+
+AIBox si adatta a diverse funzioni aziendali. Ecco gli scenari più richiesti.
+
+<Cards cols={3}>
+  <Card title="Onboarding dipendenti">I nuovi assunti trovano risposte immediate su procedure, strumenti e regolamenti interni, riducendo il tempo di affiancamento da settimane a giorni.</Card>
+  <Card title="Supporto operativo interno">Operatori e tecnici consultano le procedure corrette in tempo reale, senza interrompere colleghi o cercare in archivi disorganizzati.</Card>
+  <Card title="Compliance e qualità">Accesso immediato a normative, protocolli e procedure ISO. Ogni risposta è tracciabile e riferita al documento originale.</Card>
+  <Card title="Knowledge base commerciale">Il team vendite accede a schede prodotto, condizioni contrattuali e FAQ aggiornate per rispondere ai clienti senza ritardi.</Card>
+  <Card title="Manuali tecnici e macchinari">Cercare una specifica tecnica in un manuale di 500 pagine? AIBox la trova in secondi, con il numero di pagina esatto.</Card>
+  <Card title="Help desk interno">Riduce le richieste ripetitive a IT e amministrazione: i dipendenti trovano da soli le risposte alle domande più comuni.</Card>
+</Cards>
+
+## Dall’idea al sistema attivo in 4 settimane
+
+Un percorso strutturato e senza sorprese. Tu fornisci i contenuti, noi costruiamo il sistema.
+
+1. **Raccolta documenti.** Ci invii i materiali da indicizzare: manuali, procedure, policy, FAQ, regolamenti interni.
+2. **Strutturazione.** Organizziamo, puliamo e prepariamo i contenuti per l’indicizzazione semantica.
+3. **Configurazione.** Costruiamo la knowledge base, configuriamo il motore AI e personalizziamo l’interfaccia.
+4. **Go-live e training.** Rilascio del sistema, formazione del team e supporto al primo utilizzo operativo.
+
+<Stats items={[
+  { v: '−70%', l: 'Tempo di ricerca delle informazioni' },
+  { v: '−50%', l: 'Tempo di onboarding' },
+  { v: '24/7', l: 'Disponibilità del sistema' },
+  { v: '<5 s', l: 'Tempo medio di risposta' },
+]} />

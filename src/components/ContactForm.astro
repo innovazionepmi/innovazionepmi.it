@@ -1,0 +1,10 @@
+---
+// Form di contatto del sito: form HubSpot "Contatti sito" (ID in site.contactFormId).
+// Dopo l'invio HubSpot reindirizza a /grazie/ (impostato nel form su HubSpot).
+import HubspotForm from './HubspotForm.astro';
+import { site } from '../data/site';
+interface Props { title?: string; intro?: string; subject?: string; source?: string }
+const { title = 'Contattaci per info', intro = 'Per qualsiasi richiesta di informazioni sui nostri servizi di consulenza alle PMI, compila il form e ti ricontatteremo al più presto.' } = Astro.props;
+---
+
+<HubspotForm formId={site.contactFormId} title={title} intro={intro} />

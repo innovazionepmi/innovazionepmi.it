@@ -1,0 +1,12 @@
+---
+// Griglia di card. Uso: <Cards cols={3}><Card title="…" n="1">testo</Card></Cards>
+interface Props { cols?: 2 | 3 | 4 }
+const { cols = 3 } = Astro.props;
+---
+
+<div class="cards rot not-prose" style={`--cols:${cols}`}><slot /></div>
+
+<style>
+  .cards { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: 1.2rem; margin-block: 2rem; }
+  @media (max-width: 820px) { .cards { grid-template-columns: 1fr; } }
+</style>

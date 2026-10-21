@@ -1,0 +1,39 @@
+# robots.txt — innovazionepmi.it
+# Sito pubblico: tutti i crawler sono benvenuti, compresi quelli dei motori di ricerca basati su AI.
+
+User-agent: *
+Allow: /
+
+# Crawler AI di ricerca e assistenti (citazione e risposte con link alle fonti)
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: cohere-ai
+Allow: /
+
+Sitemap: https://www.innovazionepmi.it/sitemap-index.xml

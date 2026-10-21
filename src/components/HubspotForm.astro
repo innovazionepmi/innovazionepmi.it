@@ -1,0 +1,24 @@
+---
+// Form HubSpot incorporato (stesso portale e stesso embed usati dalle landing).
+import { site } from '../data/site';
+interface Props { formId: string; title?: string; intro?: string }
+const { formId, title = 'Contattaci', intro } = Astro.props;
+---
+
+<section class="contact" id="contact">
+  <div class="wrap"><div class="narrow">
+    <h2>{title}</h2>
+    {intro && <p class="intro">{intro}</p>}
+    <div class="frame">
+      <div class="hs-form-frame" data-region="na1" data-form-id={formId} data-portal-id={site.hubspotPortalId}></div>
+    </div>
+  </div></div>
+  <script is:inline defer src={`https://js.hsforms.net/forms/embed/${site.hubspotPortalId}.js`}></script>
+</section>
+
+<style>
+  .contact { background: var(--paper-2); padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+  .narrow { max-width: 760px; }
+  .intro { color: var(--ink-2); }
+  .frame { margin-top: 1.5rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; min-height: 220px; }
+</style>
