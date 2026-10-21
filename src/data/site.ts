@@ -1,7 +1,4 @@
 // Dati globali del sito: modificali qui e si aggiornano ovunque.
-import iconProcessi from '../assets/img/ICON-Innovazione-dei-processi.png';
-import iconAutomazione from '../assets/img/ICON-AutomazioneIntelligente-1.png';
-import iconMarketing from '../assets/img/ICON-Marketing-Crescita.png';
 
 export const site = {
   name: 'Innovazione PMI',
@@ -36,7 +33,7 @@ export const aree = [
     label: 'Innovazione dei processi',
     title: 'Innovazione dei processi',
     text: 'Rendiamo più semplice e moderno il modo di lavorare della tua impresa: analizziamo i flussi, individuiamo gli sprechi e progettiamo processi più rapidi, chiari e sostenibili.',
-    icon: iconProcessi,
+    icon: 'processi' as const,
     external: false,
   },
   {
@@ -44,7 +41,7 @@ export const aree = [
     label: 'Automazione intelligente',
     title: 'Automazione intelligente',
     text: 'Liberiamo risorse preziose automatizzando le attività ripetitive e a basso valore: dall’amministrazione alla gestione clienti, sistemi che fanno risparmiare tempo e riducono gli errori.',
-    icon: iconAutomazione,
+    icon: 'automazione' as const,
     external: false,
   },
   {
@@ -52,7 +49,7 @@ export const aree = [
     label: 'Marketing e sviluppo business',
     title: 'Marketing e sviluppo business',
     text: 'Strategie di marketing e sviluppo commerciale su misura per attrarre nuovi clienti e fidelizzare quelli esistenti, con il team di Emilio Zucca Web Strategies.',
-    icon: iconMarketing,
+    icon: 'marketing' as const,
     external: true,
   },
 ];

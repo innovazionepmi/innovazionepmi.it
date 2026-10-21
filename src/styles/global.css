@@ -53,9 +53,9 @@ h3 { font-size: 1.25rem; }
 
 /* Rotazione colori per card con bordo superiore: --c = colore, --on = colore del testo sopra --c */
 :root { --c-1: #12a0b8; --c-2: #b13a82; --c-3: #d3a94a; }
-.rot > :nth-child(3n+1) { --c: var(--c-1); --on: #fff; }
-.rot > :nth-child(3n+2) { --c: var(--c-2); --on: #fff; }
-.rot > :nth-child(3n+3) { --c: var(--c-3); --on: var(--ink); }
+.rot > :nth-child(3n+1) { --c: var(--c-1); --ci: #0e7c8f; --on: #fff; }
+.rot > :nth-child(3n+2) { --c: var(--c-2); --ci: #8f2c69; --on: #fff; }
+.rot > :nth-child(3n+3) { --c: var(--c-3); --ci: #93701f; --on: var(--ink); }
 
 .btn {
   display: inline-flex; align-items: center; gap: .6rem;

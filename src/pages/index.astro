@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import ContactForm from '../components/ContactForm.astro';
@@ -46,7 +46,7 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
       <div class="cards rot">
         {aree.map((s) => (
           <a class="svc" href={s.href} rel={s.external ? 'noopener' : undefined}>
-            <Image src={s.icon} alt={s.title} widths={[120, 240]} sizes="120px" loading="lazy" />
+            <Icon name={s.icon} />
             <h3>{s.title}</h3>
             <p>{s.text}</p>
             <span class="svc-go">Scopri di più →</span>
@@ -110,7 +110,6 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
   .svc { background: #fff; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent)); padding: 1.8rem; display: flex; flex-direction: column; gap: .5rem; transition: transform .2s, box-shadow .2s; }
   .svc:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(14,30,54,.12); }
-  .svc :global(img) { width: 84px; height: 84px; object-fit: contain; margin-bottom: .6rem; }
   .svc h3 { margin: 0; }
   .svc p { margin: 0; color: var(--ink-2); font-size: .98rem; }
   .svc-go { margin-top: auto; padding-top: .8rem; font-family: var(--font-head); font-weight: 700; }

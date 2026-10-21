@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { aree, percorsi, site } from '../data/site';
@@ -28,7 +28,7 @@ const graph = [{
       <div class="cards rot">
         {aree.map((s) => (
           <a class="svc" href={s.href} rel={s.external ? 'noopener' : undefined}>
-            <Image src={s.icon} alt={s.title} widths={[120, 240]} sizes="84px" loading="lazy" />
+            <Icon name={s.icon} />
             <h3>{s.title}{s.external ? ' ↗' : ''}</h3>
             <p>{s.text}</p>
             <span class="svc-go">Scopri di più →</span>
@@ -62,7 +62,6 @@ const graph = [{
   .cards.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
   .svc { background: #fff; border-radius: var(--radius); text-decoration: none; border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent)); padding: 1.8rem; display: flex; flex-direction: column; gap: .5rem; transition: transform .2s, box-shadow .2s; }
   .svc:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(16,21,31,.12); }
-  .svc :global(img) { width: 84px; height: 84px; object-fit: contain; margin-bottom: .6rem; }
   .svc h3 { margin: 0; }
   .svc p { margin: 0; color: var(--ink-2); font-size: .98rem; }
   .svc-go { margin-top: auto; padding-top: .8rem; font-family: var(--font-head); font-weight: 700; }
