@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="Manrope, Inter, Arial, sans-serif">
+  <rect width="800" height="440" rx="18" fill="#f7f8fa"/>
+  <text x="400" y="48" text-anchor="middle" font-size="26" font-weight="800" fill="#10151f">Il metodo in 4 passaggi</text>
+  <g>
+    <rect x="30" y="80" width="355" height="150" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="68" cy="118" r="20" fill="#12a0b8"/><text x="68" y="126" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">1</text>
+    <text x="100" y="125" font-size="23" font-weight="800" fill="#10151f">Parti da ciò che hai</text>
+    <text x="52" y="168" font-size="19" fill="#4a5566">Contenuti, struttura e URL del</text>
+    <text x="52" y="194" font-size="19" fill="#4a5566">vecchio sito sono la base.</text>
+  </g>
+  <g>
+    <rect x="415" y="80" width="355" height="150" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="453" cy="118" r="20" fill="#12a0b8"/><text x="453" y="126" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">2</text>
+    <text x="485" y="125" font-size="23" font-weight="800" fill="#10151f">L’AI ricostruisce</text>
+    <text x="437" y="168" font-size="19" fill="#4a5566">Codice, pagine e testi riscritti.</text>
+    <text x="437" y="194" font-size="19" fill="#4a5566">Tu approvi e decidi.</text>
+  </g>
+  <g>
+    <rect x="30" y="255" width="355" height="150" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="68" cy="293" r="20" fill="#12a0b8"/><text x="68" y="301" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">3</text>
+    <text x="100" y="300" font-size="23" font-weight="800" fill="#10151f">Ottimizzi SEO e GEO</text>
+    <text x="52" y="343" font-size="19" fill="#4a5566">Risposte chiare, FAQ e dati</text>
+    <text x="52" y="369" font-size="19" fill="#4a5566">strutturati in ogni pagina.</text>
+  </g>
+  <g>
+    <rect x="415" y="255" width="355" height="150" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="453" cy="293" r="20" fill="#12a0b8"/><text x="453" y="301" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">4</text>
+    <text x="485" y="300" font-size="23" font-weight="800" fill="#10151f">Pubblichi</text>
+    <text x="437" y="343" font-size="19" fill="#4a5566">Piattaforma veloce, SSL e</text>
+    <text x="437" y="369" font-size="19" fill="#4a5566">distribuzione globale.</text>
+  </g>
+</svg>

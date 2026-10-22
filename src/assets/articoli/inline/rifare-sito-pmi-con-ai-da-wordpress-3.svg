@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="Manrope, Inter, Arial, sans-serif">
+  <rect width="800" height="440" rx="18" fill="#f7f8fa"/>
+  <text x="400" y="42" text-anchor="middle" font-size="24" font-weight="800" fill="#10151f">Migrazione a gradi: nessun momento a vuoto</text>
+  <g font-size="17" font-weight="700" fill="#4a5566" text-anchor="middle">
+    <text x="262" y="84">Copia e verifica</text><text x="262" y="106">dei DNS</text>
+    <text x="407" y="84">Test su indirizzo</text><text x="407" y="106">provvisorio</text>
+    <text x="552" y="84">Passaggio del sito</text><text x="552" y="106">e redirect 301</text>
+    <text x="697" y="84">Verifiche, backup</text><text x="697" y="106">e spegnimento</text>
+  </g>
+  <g stroke="#dde2e7" stroke-width="2" stroke-dasharray="5 5"><path d="M190 120V400M335 120V400M480 120V400M625 120V400M770 120V400"/></g>
+  <g font-size="19" font-weight="800" fill="#10151f">
+    <text x="20" y="170">Posta</text><text x="20" y="260">Sito vecchio</text><text x="20" y="350">Sito nuovo</text>
+  </g>
+  <rect x="190" y="140" width="580" height="60" rx="10" fill="#d9f5f8" stroke="#12a0b8" stroke-width="2"/>
+  <text x="480" y="177" text-anchor="middle" font-size="20" font-weight="800" fill="#0e7c8f">Sempre attiva, mai interrotta</text>
+  <rect x="190" y="230" width="290" height="60" rx="10" fill="#e3c377"/>
+  <text x="335" y="267" text-anchor="middle" font-size="19" font-weight="800" fill="#10151f">Online e invariato</text>
+  <rect x="480" y="230" width="145" height="60" rx="10" fill="#f6ecd2" stroke="#e3c377" stroke-width="2"/>
+  <text x="552" y="266" text-anchor="middle" font-size="17" font-weight="700" fill="#10151f">Di riserva</text>
+  <rect x="625" y="230" width="145" height="60" rx="10" fill="#e8ebef" stroke="#4a5566" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="697" y="266" text-anchor="middle" font-size="17" font-weight="700" fill="#4a5566">Spento</text>
+  <rect x="190" y="320" width="145" height="60" rx="10" fill="#fff" stroke="#12a0b8" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="262" y="356" text-anchor="middle" font-size="17" font-weight="700" fill="#0e7c8f">Costruzione</text>
+  <rect x="335" y="320" width="145" height="60" rx="10" fill="#fff" stroke="#12a0b8" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="407" y="356" text-anchor="middle" font-size="17" font-weight="700" fill="#0e7c8f">Collaudo</text>
+  <rect x="480" y="320" width="290" height="60" rx="10" fill="#12a0b8"/>
+  <text x="625" y="357" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">Online</text>
+</svg>
