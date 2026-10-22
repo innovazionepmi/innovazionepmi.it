@@ -38,7 +38,7 @@ Rifarlo sembra un progetto enorme, e per questo si rimanda. Ma oggi il costo di 
 
 ## Cosa significa “rifare il sito con l’AI”
 
-Non vuol dire chiedere a un chatbot di “farmi un sito”. Vuol dire usare l’AI come un team di sviluppo e redazione molto veloce, mentre tu mantieni la direzione. Il metodo che ho applicato al mio sito, [emiliozucca.com](https://emiliozucca.com), ha quattro passaggi.
+Non vuol dire chiedere a un chatbot di “farmi un sito”. Vuol dire usare l’AI come un team di sviluppo e redazione molto veloce, mentre tu mantieni la direzione. Il metodo che ho applicato a questo sito ha quattro passaggi.
 
 ![Schema del metodo in quattro passaggi: parti da ciò che hai, l’AI ricostruisce, ottimizzi SEO e GEO, pubblichi](../../assets/articoli/inline/rifare-sito-pmi-con-ai-da-wordpress-1.svg)
 
