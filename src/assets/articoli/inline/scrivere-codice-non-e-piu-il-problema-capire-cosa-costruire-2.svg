@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 390" font-family="Manrope, Inter, Arial, sans-serif">
+  <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4a5566"/></marker></defs>
+  <rect width="800" height="390" rx="18" fill="#f7f8fa"/>
+  <text x="400" y="44" text-anchor="middle" font-size="24" font-weight="800" fill="#10151f">Prima il processo, poi la tecnologia</text>
+  <g stroke="#4a5566" stroke-width="2.5" marker-end="url(#a)"><path d="M192 170H208"/><path d="M382 170H398"/><path d="M572 170H588"/></g>
+  <g>
+    <rect x="22" y="80" width="170" height="180" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="107" cy="112" r="18" fill="#12a0b8"/><text x="107" y="119" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">1</text>
+    <text x="107" y="158" text-anchor="middle" font-size="21" font-weight="800" fill="#10151f">Mappa</text>
+    <g font-size="17" fill="#4a5566" text-anchor="middle"><text x="107" y="192">Come funziona</text><text x="107" y="214">oggi, passo per</text><text x="107" y="236">passo</text></g>
+  </g>
+  <g>
+    <rect x="212" y="80" width="170" height="180" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="297" cy="112" r="18" fill="#12a0b8"/><text x="297" y="119" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">2</text>
+    <text x="297" y="158" text-anchor="middle" font-size="21" font-weight="800" fill="#10151f">Semplifica</text>
+    <g font-size="17" fill="#4a5566" text-anchor="middle"><text x="297" y="192">Elimina ciò che</text><text x="297" y="214">non serve, prima</text><text x="297" y="236">di automatizzare</text></g>
+  </g>
+  <g>
+    <rect x="402" y="80" width="170" height="180" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="487" cy="112" r="18" fill="#12a0b8"/><text x="487" y="119" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">3</text>
+    <text x="487" y="158" text-anchor="middle" font-size="21" font-weight="800" fill="#10151f">Automatizza</text>
+    <g font-size="17" fill="#4a5566" text-anchor="middle"><text x="487" y="192">Solo dove il</text><text x="487" y="214">ritorno si può</text><text x="487" y="236">stimare</text></g>
+  </g>
+  <g>
+    <rect x="592" y="80" width="170" height="180" rx="14" fill="#fff" stroke="#dde2e7" stroke-width="2"/>
+    <circle cx="677" cy="112" r="18" fill="#12a0b8"/><text x="677" y="119" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">4</text>
+    <text x="677" y="158" text-anchor="middle" font-size="21" font-weight="800" fill="#10151f">Gestisci</text>
+    <g font-size="17" fill="#4a5566" text-anchor="middle"><text x="677" y="192">Chi lo gestirà</text><text x="677" y="214">tra sei mesi, con</text><text x="677" y="236">quali regole</text></g>
+  </g>
+  <rect x="22" y="290" width="740" height="64" rx="14" fill="#f8e7f1" stroke="#b13a82" stroke-width="2"/>
+  <text x="392" y="329" text-anchor="middle" font-size="20" font-weight="800" fill="#b13a82">Processo confuso + automazione = confusione più veloce</text>
+</svg>

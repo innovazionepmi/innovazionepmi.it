@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="Manrope, Inter, Arial, sans-serif">
+  <rect width="800" height="440" rx="18" fill="#f7f8fa"/>
+  <rect x="30" y="30" width="355" height="290" rx="14" fill="#fff" stroke="#12a0b8" stroke-width="2.5"/>
+  <text x="207" y="76" text-anchor="middle" font-size="26" font-weight="800" fill="#0e7c8f">Oggi è facile</text>
+  <g fill="#12a0b8"><circle cx="64" cy="127" r="7"/><circle cx="64" cy="181" r="7"/><circle cx="64" cy="235" r="7"/><circle cx="64" cy="289" r="7"/></g>
+  <g font-size="19" font-weight="600" fill="#10151f">
+    <text x="84" y="134">Automazioni tra software</text><text x="84" y="188">Codice scritto con l’AI</text>
+    <text x="84" y="242">Assistenti aziendali</text><text x="84" y="296">Report automatici</text>
+  </g>
+  <rect x="415" y="30" width="355" height="290" rx="14" fill="#fff" stroke="#b13a82" stroke-width="2.5"/>
+  <text x="592" y="76" text-anchor="middle" font-size="26" font-weight="800" fill="#b13a82">Resta difficile</text>
+  <g fill="#b13a82"><circle cx="449" cy="127" r="7"/><circle cx="449" cy="181" r="7"/><circle cx="449" cy="235" r="7"/><circle cx="449" cy="289" r="7"/></g>
+  <g font-size="19" font-weight="600" fill="#10151f">
+    <text x="469" y="134">Capire cosa costruire</text><text x="469" y="188">Decidere dati e accessi</text>
+    <text x="469" y="242">Integrare nello stack</text><text x="469" y="296">Gestire nel tempo</text>
+  </g>
+  <rect x="30" y="345" width="740" height="70" rx="14" fill="#10151f"/>
+  <text x="400" y="388" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">L’AI ha abbassato il costo del codice, non il valore del progetto</text>
+</svg>
