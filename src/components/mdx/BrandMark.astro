@@ -1,0 +1,18 @@
+---
+// Logo di un marchio terzo citato nella pagina (es. lo strumento oggetto di un corso), con nota sul marchio.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { src: ImageMetadata; alt: string; width?: number }
+const { src, alt, width = 220 } = Astro.props;
+---
+
+<figure class="brand not-prose">
+  <Image src={src} alt={alt} width={width} class="brand-img" />
+  <figcaption><slot /></figcaption>
+</figure>
+
+<style>
+  .brand { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap; margin-block: 2rem; padding: 1.2rem 1.6rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); max-width: var(--prose); }
+  .brand-img { height: auto; width: min(220px, 60%); flex: none; }
+  figcaption { flex: 1 1 240px; margin: 0; font-size: .95rem; color: var(--ink-2); }
+</style>
