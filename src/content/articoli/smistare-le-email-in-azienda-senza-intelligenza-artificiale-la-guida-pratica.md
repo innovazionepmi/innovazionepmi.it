@@ -54,4 +54,4 @@ Un’elaborazione tramite un modello di intelligenza artificiale ha un costo per
 
 ## Fare a meno della AI quando possibile: sintesi
 
-Lo smistamento automatico delle email è uno degli esempi più chiari di come l’[automazione intelligente](/automazione-intelligente/) non significhi necessariamente intelligenza artificiale. Un workflow a regole ben progettato copre la maggior parte dei casi, costa quasi nulla da eseguire e mantiene i dati aziendali dentro il perimetro dell’azienda, semplificando anche il rispetto della normativa sulla protezione dei dati.
+Lo smistamento automatico delle email è uno degli esempi più chiari di come l’[automazione intelligente](/pmi-innovation-program/implementazione/) non significhi necessariamente intelligenza artificiale. Un workflow a regole ben progettato copre la maggior parte dei casi, costa quasi nulla da eseguire e mantiene i dati aziendali dentro il perimetro dell’azienda, semplificando anche il rispetto della normativa sulla protezione dei dati.

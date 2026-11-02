@@ -119,6 +119,6 @@ Non serve un sistema complesso per cambiare questa situazione. Serve un punto fe
 
 ## Vuoi capire quanti lead stai perdendo nella tua azienda?
 
-Non serve indovinare quanti contatti si stanno perdendo: si può misurare. Con Innovazione PMI possiamo analizzare come arrivano e come vengono gestiti oggi i tuoi contatti commerciali, individuare i punti in cui si perdono opportunità e costruire un percorso semplice per introdurre [automazioni di follow-up](/automazione-intelligente/) senza complicare il lavoro quotidiano del tuo team.
+Non serve indovinare quanti contatti si stanno perdendo: si può misurare. Con Innovazione PMI possiamo analizzare come arrivano e come vengono gestiti oggi i tuoi contatti commerciali, individuare i punti in cui si perdono opportunità e costruire un percorso semplice per introdurre [automazioni di follow-up](/pmi-innovation-program/implementazione/) senza complicare il lavoro quotidiano del tuo team.
 
 [**Prenota una consulenza gratuita con Innovazione PMI**](/acceleratore-adozione-ai-call/)

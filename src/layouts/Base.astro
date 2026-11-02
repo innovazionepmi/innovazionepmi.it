@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { site, servizi } from '../data/site';
+import { site, servizi, programma, marketing } from '../data/site';
 import { baseGraph, breadcrumbs, webPage, type Crumb } from '../lib/seo';
 import logo from '../assets/img/logo.png';
 import ogDefault from '../assets/img/img-innovazione-processi.jpg';
@@ -115,11 +115,16 @@ const gtm = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date(
 
         <nav class="nav" aria-label="Principale">
           <div class="dropdown">
-            <a href="/servizi/" class:list={['dd-label', { active: isActive('/servizi/') || servizi.some((s) => !s.external && isActive(s.href)) }]}>Servizi <span aria-hidden="true">▾</span></a>
+            <a href={programma.href} class:list={['dd-label', { active: isActive(programma.href) || isActive('/formazione/') || isActive('/acceleratore-adozione-ai') }]}>{programma.label} <span aria-hidden="true">▾</span></a>
             <div class="dd-menu">
-              {servizi.map((s) => (
-                <a href={s.href} class:list={{ active: isActive(s.href) }} rel={s.external ? 'noopener' : undefined}>{s.label}{s.external ? ' ↗' : ''}</a>
+              <a href={programma.href} class:list={['dd-all', { active: path === programma.href }]}>Il percorso completo</a>
+              {programma.fasi.map((fase) => (
+                <>
+                  <a href={fase.href} class:list={{ active: isActive(fase.href) }}>{fase.label}</a>
+                  {fase.figli?.map((fi) => <a href={fi.href} class:list={['dd-sub', { active: isActive(fi.href) }]}>{fi.label}</a>)}
+                </>
               ))}
+              <a href={marketing.href} class="dd-ext" rel="noopener">{marketing.label} ↗</a>
             </div>
           </div>
           <a href="/blog/" class:list={{ active: isActive('/blog/') }}>Blog</a>
@@ -151,7 +156,7 @@ const gtm = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date(
           <p class="foot-note">Consulenza di innovazione, processi, automazione e marketing per le PMI.</p>
         </div>
         <div>
-          <h4>Servizi</h4>
+          <h4>Il programma</h4>
           <ul>
             {servizi.map((s) => <li><a href={s.href} rel={s.external ? 'noopener' : undefined}>{s.label}</a></li>)}
           </ul>
@@ -192,9 +197,13 @@ const gtm = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date(
   .nav a:not(.btn):hover, .nav a.active { text-decoration: underline; text-decoration-color: var(--magenta); text-decoration-thickness: 3px; text-underline-offset: 6px; }
   .btn--small { padding: .55rem 1.2rem; font-size: .88rem; color: #fff; }
   .dropdown { position: relative; }
-  .dd-menu { position: absolute; top: 100%; left: -1rem; min-width: 290px; padding: .6rem; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 18px 40px rgba(16,21,31,.14); display: none; flex-direction: column; }
+  .dd-menu { position: absolute; top: 100%; left: -1rem; min-width: 340px; padding: .6rem; background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 18px 40px rgba(16,21,31,.14); display: none; flex-direction: column; }
   .dropdown:hover .dd-menu, .dropdown:focus-within .dd-menu { display: flex; }
-  .dd-menu a { padding: .65rem 1rem; border-radius: 8px; }
+  .dd-menu a { padding: .55rem 1rem; border-radius: 8px; }
+  .dd-menu .dd-sub { padding-left: 2rem; font-size: .88rem; font-weight: 500; color: var(--ink-2); }
+  .dd-menu .dd-sub::before { content: '↳ '; }
+  .dd-menu .dd-all { background: var(--accent-soft); }
+  .dd-menu .dd-ext { margin-top: .3rem; border-top: 1px solid var(--line); border-radius: 0 0 8px 8px; padding-top: .8rem; }
   .dd-menu a:hover { background: var(--accent-soft); text-decoration: none !important; }
   .nav-toggle, .burger { display: none; }
 
@@ -213,6 +222,8 @@ const gtm = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date(
     .dropdown { text-align: center; }
     .dd-menu { display: flex; position: static; background: transparent; color: #fff; border: 0; box-shadow: none; font-size: 1rem; padding: .3rem 0 0; gap: .2rem; }
     .dd-menu a:hover { background: transparent; }
+    .dd-menu .dd-sub { padding-left: 1rem; color: #c1c8d1; }
+    .dd-menu .dd-all, .dd-menu .dd-ext { background: transparent; border: 0; }
     .dd-label span { display: none; }
   }
 

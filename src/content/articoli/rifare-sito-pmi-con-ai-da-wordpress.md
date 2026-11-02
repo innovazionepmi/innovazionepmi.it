@@ -100,7 +100,7 @@ Non è la strada giusta per tutti. Se il tuo sito è un e-commerce complesso, se
 
 ## Il primo passo: capire se il tuo sito è da rifare
 
-Rifare il sito è anche un buon momento per capire dove l’AI può aiutare il resto dell’azienda: se ti interessa, leggi [da dove iniziare con l’AI in azienda](/blog/ai-in-azienda-da-dove-iniziare-se-non-sai-da-dove-iniziare/) o scopri come [innovare i processi](/innovazione-dei-processi/) senza fermare ciò che già funziona.
+Rifare il sito è anche un buon momento per capire dove l’AI può aiutare il resto dell’azienda: se ti interessa, leggi [da dove iniziare con l’AI in azienda](/blog/ai-in-azienda-da-dove-iniziare-se-non-sai-da-dove-iniziare/) o scopri come [innovare i processi](/pmi-innovation-program/process-roadmap/) senza fermare ciò che già funziona.
 
 ## Vuoi capire se il tuo sito è da rifare?
 

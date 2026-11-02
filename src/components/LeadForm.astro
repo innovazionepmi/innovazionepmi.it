@@ -1,12 +1,13 @@
 ---
 // Form lead delle ex landing: invia i dati in POST (JSON) al webhook n8n, poi porta alla thank-you.
 // Come nelle landing: accetta solo email aziendali, timeout di 6 s e redirect comunque (la thank-you gestisce la conversione).
+import { site } from '../data/site';
 interface Props {
-  title?: string; intro?: string; endpoint: string; redirect: string;
+  title?: string; intro?: string; endpoint?: string; form?: string; service?: string; redirect: string;
   phone?: boolean; submitLabel?: string; note?: string;
 }
 const {
-  title = 'Contattaci', intro, endpoint, redirect, phone = false, submitLabel = 'Invia', note = 'Usa l’email della tua azienda: niente Gmail, Outlook o altri indirizzi personali.',
+  title = 'Contattaci', intro, endpoint = site.leadWebhook, form = '', service = '', redirect, phone = false, submitLabel = 'Invia', note = 'Usa l’email della tua azienda: niente Gmail, Outlook o altri indirizzi personali.',
 } = Astro.props;
 ---
 
@@ -14,13 +15,14 @@ const {
   <div class="wrap"><div class="narrow">
     <h2>{title}</h2>
     {intro && <p class="intro">{intro}</p>}
-    <form class="lf" data-endpoint={endpoint} data-redirect={redirect} data-phone={phone ? '1' : ''} novalidate>
+    <form class="lf" data-endpoint={endpoint} data-redirect={redirect} data-form={form} data-service={service} data-phone={phone ? '1' : ''} novalidate>
       <p class="req">* Tutti i campi sono obbligatori</p>
       <label>Nome *<input type="text" name="first_name" autocomplete="given-name" required /></label>
       <label>Cognome *<input type="text" name="last_name" autocomplete="family-name" required /></label>
       <label>Email aziendale *<input type="email" name="email" autocomplete="email" required /></label>
       <label>Azienda *<input type="text" name="company" autocomplete="organization" required /></label>
       {phone && <label>Telefono *<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required /></label>}
+      <label class="hp" aria-hidden="true">Sito web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
       <p class="err" role="alert" hidden></p>
       <div class="full"><button class="btn btn--accent" type="submit">{submitLabel}</button></div>
       <p class="note full">{note}</p>
@@ -45,6 +47,7 @@ const {
       const v = (n: string) => (field(n)?.value ?? '').trim();
       const payload: Record<string, string> = { first_name: v('first_name'), last_name: v('last_name'), email: v('email'), company: v('company') };
       if (form.dataset.phone) payload.phone = v('phone');
+      const meta = { website: v('website'), page: location.pathname, form_id: form.dataset.form ?? '', service: form.dataset.service ?? '' };
       if (Object.values(payload).some((x) => !x)) return fail('Compila tutti i campi per continuare.');
       if (form.dataset.phone) {
         const digits = payload.phone.replace(/\D/g, '');
@@ -56,7 +59,7 @@ const {
       btn.disabled = true; btn.textContent = 'Invio in corso…';
       const ctrl = new AbortController();
       const t = setTimeout(() => ctrl.abort(), 6000);
-      fetch(form.dataset.endpoint!, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl.signal })
+      fetch(form.dataset.endpoint!, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, ...meta }), signal: ctrl.signal })
         .catch((e) => console.error('Invio form fallito:', e))
         .finally(() => { clearTimeout(t); location.href = form.dataset.redirect!; });
     });
@@ -68,6 +71,7 @@ const {
   .narrow { max-width: 760px; }
   .intro { color: var(--ink-2); }
   .lf { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.2rem; margin-top: 1.5rem; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .full, .req, .err { grid-column: 1 / -1; }
   .req { margin: 0; font-size: .85rem; color: var(--ink-2); }
   label { display: grid; gap: .35rem; font-size: .9rem; font-weight: 600; }

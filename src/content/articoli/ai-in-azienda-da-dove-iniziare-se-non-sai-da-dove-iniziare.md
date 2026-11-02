@@ -73,7 +73,7 @@ Dove si concentrano questi piccoli errori? Quel punto è un candidato eccellente
 
 3\. Cosa potrebbe fare qualcun altro se avesse le stesse informazioni che ho io?
 
-Questa domanda identifica le attività che dipendono dalla conoscenza di una persona specifica, ma che potrebbero essere gestite da chiunque se quelle [informazioni fossero accessibili e strutturate](/aibox/).
+Questa domanda identifica le attività che dipendono dalla conoscenza di una persona specifica, ma che potrebbero essere gestite da chiunque se quelle [informazioni fossero accessibili e strutturate](/pmi-innovation-program/implementazione/aibox/).
 
 Se la risposta è “quasi tutto, basterebbe avere il contesto giusto”, quello è un ottimo candidato per l’AI.
 
@@ -142,6 +142,6 @@ Nessuna rivoluzione tecnologica. Un processo solo, migliorato in modo misurabile
 
 Le 4 domande di questo articolo sono un buon punto di partenza. Ma il passo successivo, capire quale processo scegliere, quale strumento testare e come misurare i risultati dipende da come funziona la tua azienda.
 
-Con Innovazione PMI [analizziamo i processi della tua azienda](/innovazione-dei-processi/), identifichiamo il punto di partenza più adatto alla tua situazione e costruiamo un percorso concreto per i primi 90 giorni, senza stravolgere il lavoro quotidiano del tuo team.
+Con Innovazione PMI [analizziamo i processi della tua azienda](/pmi-innovation-program/process-roadmap/), identifichiamo il punto di partenza più adatto alla tua situazione e costruiamo un percorso concreto per i primi 90 giorni, senza stravolgere il lavoro quotidiano del tuo team.
 
 [**Prenota una consulenza gratuita con Innovazione PMI**](/acceleratore-adozione-ai-call/)

@@ -17,7 +17,7 @@ faq:
     a: "Nelle PMI, l’automazione raramente porta a licenziamenti ma a riqualificazione. Il tempo recuperato viene tipicamente riallocato su attività a maggior valore: relazione clienti, sviluppo commerciale, miglioramento qualità. Nel 90% dei casi studiati, le PMI hanno redistribuito le ore risparmiate senza ridurre organico, aumentando invece il fatturato per dipendente del 20-35%."
 ---
 
-L’**[automazione processi PMI](/automazione-intelligente/)** non è più un lusso riservato alle grandi corporation, ma una necessità competitiva per le piccole e medie imprese italiane. Secondo dati Confindustria 2023, le PMI che hanno automatizzato almeno il 30% dei processi operativi hanno registrato una riduzione dei costi del 25-40% e un incremento della produttività del 35%.
+L’**[automazione processi PMI](/pmi-innovation-program/implementazione/)** non è più un lusso riservato alle grandi corporation, ma una necessità competitiva per le piccole e medie imprese italiane. Secondo dati Confindustria 2023, le PMI che hanno automatizzato almeno il 30% dei processi operativi hanno registrato una riduzione dei costi del 25-40% e un incremento della produttività del 35%.
 
 Questo articolo fornisce una guida concreta basata su implementazioni reali in aziende italiane, con numeri verificabili e tempi di ritorno dell’investimento documentati.
 

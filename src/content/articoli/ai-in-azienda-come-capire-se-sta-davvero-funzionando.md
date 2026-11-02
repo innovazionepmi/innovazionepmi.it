@@ -176,6 +176,6 @@ Questi tre numeri, confrontati con quelli di partenza, dicono chiaramente che lo
 
 Sapere da dove iniziare è un passo. Sapere se stai andando nella direzione giusta è il passo successivo.
 
-Con Innovazione PMI aiutiamo le aziende a definire [i KPI giusti per i loro processi specifici](/innovazione-dei-processi/), a costruire una baseline solida prima di introdurre qualsiasi strumento e a interpretare i risultati nel tempo.
+Con Innovazione PMI aiutiamo le aziende a definire [i KPI giusti per i loro processi specifici](/pmi-innovation-program/process-roadmap/), a costruire una baseline solida prima di introdurre qualsiasi strumento e a interpretare i risultati nel tempo.
 
 [**Prenota una consulenza gratuita con Innovazione PMI**](/acceleratore-adozione-ai-call/)

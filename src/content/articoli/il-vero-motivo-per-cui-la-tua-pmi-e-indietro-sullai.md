@@ -111,6 +111,6 @@ Riconosci qualcuna di queste situazioni?
 
 ## Vuoi capire da dove iniziare con l’AI nella tua azienda?
 
-Non serve un grande progetto per iniziare a colmare il divario: serve individuare il punto giusto da cui partire. Con Innovazione PMI [analizziamo i processi della tua azienda](/innovazione-dei-processi/) e [individuiamo dove l’AI può portare un beneficio concreto e misurabile](/acceleratore-adozione-ai-call/). Costruiamo poi un percorso semplice per iniziare, senza stravolgere il lavoro quotidiano.
+Non serve un grande progetto per iniziare a colmare il divario: serve individuare il punto giusto da cui partire. Con Innovazione PMI [analizziamo i processi della tua azienda](/pmi-innovation-program/process-roadmap/) e [individuiamo dove l’AI può portare un beneficio concreto e misurabile](/acceleratore-adozione-ai-call/). Costruiamo poi un percorso semplice per iniziare, senza stravolgere il lavoro quotidiano.
 
 [**Prenota una consulenza gratuita con Innovazione PMI**](/acceleratore-adozione-ai-call/)

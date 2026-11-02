@@ -1,0 +1,30 @@
+---
+// Thank-you dei form del programma: conferma, prenotazione HubSpot Meetings e invio dell'evento di conversione GTM (lead_form_submit).
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+interface Props { title: string; description: string; eyebrow: string; formName: string; steps: string[]; back: { href: string; label: string } }
+const { title, description, eyebrow, formName, steps, back } = Astro.props;
+---
+
+<Base title={title} description={description} noindex dlEvent={{ event: 'lead_form_submit', form_name: formName }}>
+  <section class="section">
+    <div class="wrap ty">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>Richiesta <span class="mark">ricevuta</span></h1>
+      <p class="lead">Grazie, abbiamo ricevuto i tuoi dati. Per risponderti nel modo più utile, scegli subito il momento per parlarci: prenoti tu giorno e ora.</p>
+      <ol>
+        {steps.map((s) => <li>{s}</li>)}
+      </ol>
+      <p class="cta"><a class="btn btn--accent" href={site.meetingsUrl} rel="noopener">Prenota un appuntamento</a> <a class="btn btn--ghost" href={back.href}>{back.label}</a></p>
+      <p class="note">Se preferisci non prenotare ora, ti ricontatteremo noi all’indirizzo che hai indicato.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ty { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); }
+  ol { padding-left: 1.2rem; display: grid; gap: .6rem; margin-block: 1.5rem; }
+  .cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .note { color: var(--ink-2); font-size: .95rem; }
+</style>

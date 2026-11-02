@@ -20,7 +20,15 @@ const { Content } = await render(p);
 const d = p.data;
 const path = `/${p.id}/`;
 const withHero = d.hero && !!d.image;
-const crumbs = [{ name: d.service ?? d.title, path }];
+// Breadcrumb gerarchico: i segmenti intermedi del path sono pagine della collezione (es. /pmi-innovation-program/implementazione/aibox/)
+const tutte = await getCollection('pagine');
+const label = (x: typeof p) => x.data.crumb ?? x.data.service ?? x.data.title;
+const parti = p.id.split('/');
+const crumbs = parti.map((_, i) => {
+  const id = parti.slice(0, i + 1).join('/');
+  const page = tutte.find((x) => x.id === id);
+  return { name: page ? label(page) : id, path: `/${id}/` };
+});
 const imgUrl = d.image ? new URL((await getImage({ src: d.image, width: 1200 })).src, site.url).toString() : undefined;
 const graph = [
   ...(d.service ? [service({ path, name: d.service, description: d.description, image: imgUrl })] : []),
@@ -72,7 +80,7 @@ const graph = [
 
   {d.faq && <div class="wrap faq-sec"><Faq items={d.faq} /></div>}
 
-  {d.cta && d.leadForm && <LeadForm title={d.formTitle} intro={d.formIntro} {...d.leadForm} />}
+  {d.cta && d.leadForm && <LeadForm title={d.formTitle} intro={d.formIntro} service={d.service ?? d.title} {...d.leadForm} />}
   {d.cta && d.hubspotForm && <HubspotForm formId={d.hubspotForm} title={d.formTitle} intro={d.formIntro} />}
   {d.cta && !d.hubspotForm && !d.leadForm && <ContactForm title={d.formTitle ?? 'Contattaci'} intro={d.formIntro} subject={`Richiesta informazioni: ${d.title}`} source={p.id} />}
 </Base>

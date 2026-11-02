@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import Base from '../layouts/Base.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { aree, percorsi, site } from '../data/site';
+import { programma } from '../data/site';
 
 const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 4);
 ---
@@ -16,7 +16,7 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
     <div class="wrap hero-in on-dark">
       <p class="eyebrow">Siamo i consulenti di Innovazione PMI</p>
       <h1>Portiamo prosperità alle PMI: <span class="c-t">Innovazione</span>, <span class="c-m">Automazione</span>, Intelligenza Artificiale, <span class="c-g">Marketing</span></h1>
-      <p class="hero-lead">Aiutiamo le imprese italiane a innovare, automatizzare e crescere, per restare competitive e rendere l’Italia un posto migliore.</p>
+      <p class="hero-lead">Dal processo alla tecnologia: un percorso a fasi per innovare, automatizzare e portare l’AI in azienda dove serve davvero. Si parte con una call gratuita.</p>
       <div class="hero-cta">
         <a class="btn" href="#servizi">Scopri dove interveniamo</a>
         <a class="btn btn--ghost" href="/contatti/">Contattaci</a>
@@ -31,6 +31,7 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
         <h2>Abbiamo a cuore la prosperità delle PMI italiane</h2>
       </div>
       <div class="prose-l">
+        <p>Il nostro principio è semplice: <strong>prima il processo, poi la tecnologia</strong>. L’AI funziona quando i flussi di lavoro sono chiari, per questo ogni intervento parte da lì.</p>
         <p><strong>Innovare i processi</strong> vuol dire eliminare procedure lente e superate. Aiutiamo le PMI a semplificare il lavoro, ridurre sprechi e costruire un’organizzazione più chiara, fatta di flussi semplici dove tempi e responsabilità sono ben definiti.</p>
         <p>Con l’<strong>automazione intelligente</strong> liberiamo tempo e risorse. Le attività ripetitive vengono gestite da sistemi digitali intelligenti, così il team può concentrarsi su ciò che conta davvero.</p>
         <p>Il <strong>marketing e lo sviluppo business</strong> trasformano l’efficienza in crescita: creiamo strategie su misura per aumentare visibilità, attrarre clienti e aprire nuove opportunità.</p>
@@ -41,27 +42,11 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
 
   <section class="section" id="servizi">
     <div class="wrap">
-      <p class="eyebrow">Dove interveniamo</p>
-      <h2>Tre aree per far crescere la tua impresa</h2>
+      <p class="eyebrow">PMI Innovation Program</p>
+      <h2>Un solo percorso, dal processo alla tecnologia</h2>
+      <p class="lead-s">Prima si capisce dove conviene intervenire, poi si progetta come deve funzionare, infine si realizza. Puoi seguire il percorso in ordine oppure entrare dalla fase che ti serve.</p>
       <div class="cards rot">
-        {aree.map((s) => (
-          <a class="svc" href={s.href} rel={s.external ? 'noopener' : undefined}>
-            <Icon name={s.icon} />
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
-            <span class="svc-go">Scopri di più →</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="percorsi">
-    <div class="wrap">
-      <p class="eyebrow">Prodotti e percorsi</p>
-      <h2>Da dove partire</h2>
-      <div class="cards two rot">
-        {percorsi.map((s) => (
+        {programma.fasi.map((s) => (
           <a class="svc" href={s.href}>
             <span class="kicker">{s.kicker}</span>
             <h3>{s.title}</h3>
@@ -70,6 +55,7 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
           </a>
         ))}
       </div>
+      <p class="more"><a class="btn btn--ghost" href="/pmi-innovation-program/">Vedi il percorso completo</a></p>
     </div>
   </section>
 
@@ -114,6 +100,8 @@ const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date -
   .svc p { margin: 0; color: var(--ink-2); font-size: .98rem; }
   .svc-go { margin-top: auto; padding-top: .8rem; font-family: var(--font-head); font-weight: 700; }
 
+  .lead-s { max-width: 62ch; color: var(--ink-2); font-size: 1.1rem; }
+  .more { margin-top: 2rem; }
   .cards.two { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
   .kicker { font-family: var(--font-head); font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--magenta); }
   .head-row { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }

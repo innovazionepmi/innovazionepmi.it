@@ -3,6 +3,31 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/innovazione-dei-processi/",
+      "destination": "/pmi-innovation-program/process-roadmap/",
+      "permanent": true
+    },
+    {
+      "source": "/automazione-intelligente/",
+      "destination": "/pmi-innovation-program/implementazione/",
+      "permanent": true
+    },
+    {
+      "source": "/aibox/typ-aibox/",
+      "destination": "/pmi-innovation-program/implementazione/aibox/typ-aibox/",
+      "permanent": true
+    },
+    {
+      "source": "/aibox/",
+      "destination": "/pmi-innovation-program/implementazione/aibox/",
+      "permanent": true
+    },
+    {
+      "source": "/servizi/",
+      "destination": "/pmi-innovation-program/",
+      "permanent": true
+    },
+    {
       "source": "/blog/come-automatizzare-processi-aziendali-pmi-3/",
       "destination": "/blog/automazione-processi-pmi-guida-pratica/",
       "permanent": true

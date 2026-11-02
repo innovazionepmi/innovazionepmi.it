@@ -145,6 +145,6 @@ Nessuno lo fa di proposito. Tutti lavorano sodo. Ma il sistema non funziona e il
 
 Il primo passo non è comprare uno strumento. È capire dove si rompono i flussi informativi oggi.
 
-Con Innovazione PMI [analizziamo come circolano le informazioni nella tua azienda](/innovazione-dei-processi/). Individuiamo i punti critici. Costruiamo un percorso semplice per centralizzare i dati senza stravolgere il lavoro del team.
+Con Innovazione PMI [analizziamo come circolano le informazioni nella tua azienda](/pmi-innovation-program/process-roadmap/). Individuiamo i punti critici. Costruiamo un percorso semplice per centralizzare i dati senza stravolgere il lavoro del team.
 
 [**Prenota una consulenza gratuita con Innovazione PMI**](/acceleratore-adozione-ai-call/)

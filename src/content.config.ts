@@ -22,7 +22,7 @@ const articoli = defineCollection({
 
 // Pagine "statiche" (servizi, privacy). Il nome file = URL (/<id>/).
 const pagine = defineCollection({
-  loader: glob({ pattern: '*.{md,mdx}', base: './src/content/pagine' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pagine' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -39,8 +39,11 @@ const pagine = defineCollection({
       imageFit: z.enum(['cover', 'contain']).default('cover'), // 'contain' per loghi e immagini da non ritagliare
       ctaLabel: z.string().default('Contattaci'), // testo del bottone nell'hero
       metaPixel: z.boolean().default(false), // carica il Meta Pixel (PageView) su questa pagina
+      crumb: z.string().optional(), // etichetta breve nel breadcrumb (default: service o title)
       leadForm: z.object({
-        endpoint: z.string().url(), // webhook n8n che riceve il lead
+        endpoint: z.string().url().optional(), // webhook n8n del lead (default: site.leadWebhook, quello universale)
+        form: z.string().optional(), // identificativo del form, inviato al workflow insieme alla pagina di origine
+        service: z.string().optional(), // nome del servizio mostrato nella notifica
         redirect: z.string(), // thank-you dopo l'invio
         phone: z.boolean().default(false),
         submitLabel: z.string().optional(),

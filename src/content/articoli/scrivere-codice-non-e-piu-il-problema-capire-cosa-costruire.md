@@ -66,7 +66,7 @@ Per questo il lavoro parte sempre da una domanda semplice: come funziona oggi? S
 
 ![Le quattro fasi di un intervento: mappa il processo, semplifica, automatizza solo dove il ritorno si può stimare, decidi chi gestirà il risultato](../../assets/articoli/inline/scrivere-codice-non-e-piu-il-problema-capire-cosa-costruire-2.svg)
 
-Solo dopo, e solo dove il ritorno è stimabile, arriva la tecnologia. Che a quel punto è la parte più semplice. Per un approfondimento sul metodo, leggi come lavoriamo sull’[innovazione dei processi](/innovazione-dei-processi/) e sull’[automazione intelligente](/automazione-intelligente/).
+Solo dopo, e solo dove il ritorno è stimabile, arriva la tecnologia. Che a quel punto è la parte più semplice. Per un approfondimento sul metodo, leggi come lavoriamo sull’[innovazione dei processi](/pmi-innovation-program/process-roadmap/) e sull’[automazione intelligente](/pmi-innovation-program/implementazione/).
 
 ## Un caso concreto: il nostro sito
 
