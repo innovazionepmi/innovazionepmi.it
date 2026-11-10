@@ -46,6 +46,7 @@ const pagine = defineCollection({
         service: z.string().optional(), // nome del servizio mostrato nella notifica
         redirect: z.string(), // thank-you dopo l'invio
         phone: z.boolean().default(false),
+        returnLink: z.boolean().default(false), // il webhook risponde con questionario_url: lo conserviamo per la thank-you
         submitLabel: z.string().optional(),
         note: z.string().optional(),
       }).optional(),

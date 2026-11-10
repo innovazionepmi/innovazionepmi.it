@@ -7,22 +7,37 @@ import Base from '../../layouts/Base.astro';
     <div class="wrap ty">
       <p class="eyebrow">Acceleratore per Adozione AI</p>
       <h1>Fatto. Ora tocca al <span class="mark">questionario</span></h1>
-      <p class="lead">Abbiamo ricevuto i tuoi dati. Il questionario è pronto: aprilo quando hai qualche minuto senza interruzioni, va completato in un’unica sessione.</p>
+      <p class="lead">Abbiamo ricevuto i tuoi dati. Il questionario è pronto: puoi iniziare subito, oppure aprirlo più tardi dal link che ti abbiamo inviato via email.</p>
       <ol>
-        <li>Ricevi anche un’email di conferma con lo stesso link, per ritrovarlo quando vuoi.</li>
-        <li>Rispondi al questionario: le domande si adattano a quello che racconti della tua azienda.</li>
+        <li>Apri il questionario dal pulsante qui sotto: bastano 8-10 minuti, in un’unica sessione. Dal momento in cui lo apri hai due ore per completarlo, quindi scegli un momento senza interruzioni.</li>
+        <li>Rispondi alle domande, che si adattano a quello che racconti della tua azienda.</li>
         <li>Alla fine prenoti la consulenza gratuita. Si parte già dal punto giusto, non da zero.</li>
       </ol>
-      <!-- Il link al questionario personale arriva dal form HubSpot (embed del questionario, o link via email). -->
-      <p class="note">Se il link al questionario non è ancora attivo, arriverà comunque via email nei prossimi minuti.</p>
-      <p><a class="btn btn--ghost" href="/">Torna al sito</a></p>
+      <p class="cta" id="q-cta" hidden><a class="btn btn--accent" id="q-link" href="#" rel="noopener">Inizia il questionario</a> <a class="btn btn--ghost" href="/">Torna al sito</a></p>
+      <p class="note" id="q-fallback">Il link al questionario arriva via email nei prossimi minuti: controlla anche la cartella spam.</p>
+      <p class="note" id="q-mail" hidden>Ti abbiamo inviato anche un’email con lo stesso link, per ritrovarlo quando vuoi.</p>
     </div>
   </section>
 </Base>
+
+<script>
+  // Il link personale arriva dal form (risposta del webhook) ed è conservato solo per questa sessione del browser
+  try {
+    const url = sessionStorage.getItem('acc_questionario_url');
+    if (url && url.startsWith('https://questionario-acc.innovazionepmi.it/q/')) {
+      (document.getElementById('q-link') as HTMLAnchorElement).href = url;
+      document.getElementById('q-cta')!.hidden = false;
+      document.getElementById('q-mail')!.hidden = false;
+      document.getElementById('q-fallback')!.hidden = true;
+    }
+  } catch {}
+</script>
 
 <style>
   .ty { max-width: 720px; }
   .lead { font-size: 1.2rem; color: var(--ink-2); }
   ol { padding-left: 1.2rem; display: grid; gap: .6rem; margin-block: 1.5rem; }
+  .cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .cta[hidden], .note[hidden] { display: none; }
   .note { color: var(--ink-2); font-size: .95rem; }
 </style>

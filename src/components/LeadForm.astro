@@ -4,10 +4,10 @@
 import { site } from '../data/site';
 interface Props {
   title?: string; intro?: string; endpoint?: string; form?: string; service?: string; redirect: string;
-  phone?: boolean; submitLabel?: string; note?: string;
+  phone?: boolean; returnLink?: boolean; submitLabel?: string; note?: string;
 }
 const {
-  title = 'Contattaci', intro, endpoint = site.leadWebhook, form = '', service = '', redirect, phone = false, submitLabel = 'Invia', note = 'Usa l’email della tua azienda: niente Gmail, Outlook o altri indirizzi personali.',
+  title = 'Contattaci', intro, endpoint = site.leadWebhook, form = '', service = '', redirect, phone = false, returnLink = false, submitLabel = 'Invia', note = 'Usa l’email della tua azienda: niente Gmail, Outlook o altri indirizzi personali.',
 } = Astro.props;
 ---
 
@@ -15,7 +15,7 @@ const {
   <div class="wrap"><div class="narrow">
     <h2>{title}</h2>
     {intro && <p class="intro">{intro}</p>}
-    <form class="lf" data-endpoint={endpoint} data-redirect={redirect} data-form={form} data-service={service} data-phone={phone ? '1' : ''} novalidate>
+    <form class="lf" data-endpoint={endpoint} data-redirect={redirect} data-form={form} data-service={service} data-phone={phone ? '1' : ''} data-return-link={returnLink ? '1' : ''} novalidate>
       <p class="req">* Tutti i campi sono obbligatori</p>
       <label>Nome *<input type="text" name="first_name" autocomplete="given-name" required /></label>
       <label>Cognome *<input type="text" name="last_name" autocomplete="family-name" required /></label>
@@ -57,9 +57,19 @@ const {
       if (!m) return fail('Inserisci un indirizzo email valido.', field('email'));
       if (FREE.includes(m[1].toLowerCase())) return fail('Usa l’email della tua azienda: non accettiamo indirizzi Gmail, Outlook o altri provider personali.', field('email'));
       btn.disabled = true; btn.textContent = 'Invio in corso…';
+      const wantsLink = !!form.dataset.returnLink;
       const ctrl = new AbortController();
-      const t = setTimeout(() => ctrl.abort(), 6000);
+      const t = setTimeout(() => ctrl.abort(), wantsLink ? 12000 : 6000);
+      try { sessionStorage.removeItem('acc_questionario_url'); } catch {}
       fetch(form.dataset.endpoint!, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, ...meta }), signal: ctrl.signal })
+        .then(async (r) => {
+          if (!wantsLink) return;
+          // Il link personale al questionario resta in sessionStorage (non nell’URL, per non finire in GTM/Pixel); la thank-you lo mostra
+          const url = (await r.json())?.questionario_url;
+          if (typeof url === 'string' && url.startsWith('https://questionario-acc.innovazionepmi.it/q/')) {
+            try { sessionStorage.setItem('acc_questionario_url', url); } catch {}
+          }
+        })
         .catch((e) => console.error('Invio form fallito:', e))
         .finally(() => { clearTimeout(t); location.href = form.dataset.redirect!; });
     });
