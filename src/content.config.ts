@@ -53,6 +53,7 @@ const pagine = defineCollection({
       hubspotForm: z.string().optional(), // ID del form HubSpot da incorporare al posto del form di contatto
       formTitle: z.string().optional(), // titolo del form di contatto in fondo alla pagina
       formIntro: z.string().optional(),
+      colonna: z.boolean().default(false), // landing: testi, schede, figure, FAQ e form sulla stessa colonna (800px)
       noindex: z.boolean().default(false),
     }),
 });

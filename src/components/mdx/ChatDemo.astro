@@ -1,10 +1,12 @@
 ---
-// Esempio di conversazione. Uso: <ChatDemo turns={[{ who: 'Tu', text: '…' }, { who: 'AIBox', text: '…', source: 'file.pdf — pag. 12' }]} caption="…" />
-interface Props { turns: { who: string; text: string; source?: string }[]; caption?: string }
-const { turns, caption } = Astro.props;
+// Esempio di conversazione. Uso: <ChatDemo turns={[{ who: 'Tu', text: '…' }, { who: 'AIBox', text: '…', source: 'file.pdf — pag. 12' }]} label="…" caption="…" />
+// label = etichetta in evidenza sopra la chat (es. "Esempio"), per chiarire che non è una conversazione reale.
+interface Props { turns: { who: string; text: string; source?: string }[]; caption?: string; label?: string }
+const { turns, caption, label } = Astro.props;
 ---
 
 <figure class="chat not-prose">
+  {label && <p class="label">{label}</p>}
   <div class="log">
     {turns.map((t) => (
       <div class:list={['turn', { bot: t.who !== 'Tu' }]}>
@@ -19,6 +21,8 @@ const { turns, caption } = Astro.props;
 
 <style>
   .chat { margin: 2rem 0; }
+  .label { display: inline-flex; align-items: center; gap: .55rem; margin: 0 0 .8rem; padding: .35rem .95rem; border-radius: 999px; background: var(--ink); color: #fff; font-family: var(--font-head); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1.3; }
+  .label::before { content: ''; width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent-light); }
   .log { display: grid; gap: .8rem; padding: 1.4rem; background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); }
   .turn { max-width: 88%; padding: .8rem 1rem; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
   .turn.bot { margin-left: auto; background: var(--accent-soft); border-color: transparent; }

@@ -76,11 +76,11 @@ const graph = [
     </section>
   )}
 
-  <div class="wrap body"><div class="page-prose prose"><Content /></div></div>
+  <div class:list={['wrap body', { col: d.colonna }]}><div class="page-prose prose"><Content /></div></div>
 
-  {d.faq && <div class="wrap faq-sec"><Faq items={d.faq} /></div>}
+  {d.faq && <div class:list={['wrap faq-sec', { col: d.colonna }]}><Faq items={d.faq} /></div>}
 
-  {d.cta && d.leadForm && <LeadForm title={d.formTitle} intro={d.formIntro} service={d.service ?? d.title} {...d.leadForm} />}
+  {d.cta && d.leadForm && <div class:list={{ 'col-form': d.colonna }}><LeadForm title={d.formTitle} intro={d.formIntro} service={d.service ?? d.title} {...d.leadForm} /></div>}
   {d.cta && d.hubspotForm && <HubspotForm formId={d.hubspotForm} title={d.formTitle} intro={d.formIntro} />}
   {d.cta && !d.hubspotForm && !d.leadForm && <ContactForm title={d.formTitle ?? 'Contattaci'} intro={d.formIntro} subject={`Richiesta informazioni: ${d.title}`} source={p.id} />}
 </Base>
@@ -119,6 +119,12 @@ const graph = [
   .page-prose > ol > li { counter-increment: step; position: relative; background: var(--paper-2); border-radius: var(--radius); padding: 1.2rem 1.4rem 1.2rem 4.2rem; margin: 0; }
   .page-prose > ol > li::before { content: counter(step); position: absolute; left: 1.1rem; top: 1.1rem; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; }
   .page-prose > blockquote { font-family: var(--font-head); font-size: 1.35rem; line-height: 1.4; }
+
+  /* Modalità colonna (front matter colonna: true): tutto sulla stessa larghezza, per non avere margini destri diversi tra testo, schede, figure, FAQ e form */
+  .body.col .page-prose { max-width: 800px; margin-inline: 0; }
+  .body.col .page-prose > p, .body.col .page-prose > ul:not(.stats), .body.col .page-prose > ol, .body.col .page-prose > h2, .body.col .page-prose > h3, .body.col .page-prose > blockquote, .body.col .page-prose > hr { max-width: none; }
+  .faq-sec.col .faq { max-width: 800px; }
+  .col-form .contact .narrow { max-width: 800px; }
 
   @media (max-width: 800px) { .hero-grid { grid-template-columns: 1fr; } .hero-grid img { order: -1; max-width: 480px; } }
 </style>

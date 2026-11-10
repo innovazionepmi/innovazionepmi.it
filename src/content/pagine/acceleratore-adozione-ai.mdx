@@ -5,6 +5,7 @@ description: "Un questionario assistito di 10 minuti e una consulenza gratuita p
 eyebrow: "Percorso gratuito"
 hero: false
 heroVideo: "/media/adozione-ai-accelerazione.mp4"
+colonna: true
 noindex: true
 metaPixel: true
 ctaLabel: "Inizia il percorso"
@@ -38,13 +39,13 @@ import Cards from '../../components/mdx/Cards.astro';
 import Card from '../../components/mdx/Card.astro';
 import ChatDemo from '../../components/mdx/ChatDemo.astro';
 import Infographic from '../../components/mdx/Infographic.astro';
-import errori from '../../assets/img/acceleratore/02_quattro_errori_ai.png';
-import metodo from '../../assets/img/acceleratore/01_metodo_innovazione_pmi.png';
+import ErroriAI from '../../components/mdx/ErroriAI.astro';
+import MetodoPassi from '../../components/mdx/MetodoPassi.astro';
 import percorso from '../../assets/img/acceleratore/percorso.png';
 
-## L’AI non fallisce per la tecnologia. Fallisce perché nessuno sa dove metterla.
+## Vuoi che l’AI porti risultati alla tua azienda? Parti da dove conta davvero.
 
-Un percorso guidato che parte da un questionario assistito e arriva a una **consulenza gratuita** in cui si parla della tua azienda, non di intelligenza artificiale in generale.
+Quasi tutte le PMI vogliono usare l’AI per risparmiare tempo, ridurre gli errori e crescere, ma non sanno da dove cominciare. Il modo più rapido per partire bene è raccontare la propria azienda a chi sa fare le domande giuste. Per questo il percorso inizia da un **questionario assistito**: una conversazione guidata di circa 10 minuti, che si adatta a quello che racconti, e prosegue con una **consulenza gratuita** in cui si parla della tua azienda, non di intelligenza artificiale in generale.
 
 Il percorso: **contatto**, **questionario**, **consulenza gratuita**.
 
@@ -59,7 +60,7 @@ Non è un problema di tecnologia. È un problema di metodo, e si ripete quasi se
   <Card n="4" title="Il progetto muore con la persona">Chi lo teneva in piedi passa ad altro, va in ferie, cambia ruolo. Il progetto si ferma esattamente lì.</Card>
 </Cards>
 
-<Infographic src={errori} alt="I 4 errori più comuni nell’adozione dell’AI: partire dal tool, automatizzare processi sbagliati, non misurare i risultati, dipendere da una singola persona" />
+<ErroriAI />
 
 Non serve più entusiasmo sull’AI. Serve un punto di partenza.
 
@@ -71,11 +72,11 @@ Un percorso di orientamento, non un audit e non una vendita di licenze. Serve a 
 - Arrivi alla consulenza con un contesto già chiaro.
 - Nessun obbligo di proseguire.
 
-<Infographic src={metodo} alt="Il metodo Innovazione PMI in 5 passi: raccolta dati aziendali, analisi personalizzata, priorità d’intervento, casi d’uso AI su misura, adozione AI in azienda" caption="L’Acceleratore copre i primi passi del metodo: raccolta dati, analisi e priorità d’intervento. L’adozione vera e propria in azienda è un percorso successivo ed eventuale, che si valuta solo dopo la consulenza gratuita." />
+<MetodoPassi caption="L’Acceleratore copre i primi passi del metodo: raccolta dati, analisi e priorità d’intervento. L’adozione vera e propria in azienda è un percorso successivo ed eventuale, che si valuta solo dopo la consulenza gratuita." />
 
 ## Dal modulo alla consulenza, in cinque passaggi
 
-Non un form che finisce in un CRM e basta: un percorso che si costruisce sulle tue risposte.
+Il questionario non è un modulo che finisce in un archivio: è il **primo passo del percorso**. Se lo completi, arriviamo alla consulenza successiva con molti più elementi sulla tua azienda (come lavorate, dove perdete tempo, quali sono le tue priorità) e possiamo dare più valore alla call, partendo dalla tua situazione invece che da zero.
 
 1. **Lasci i tuoi dati.** Un modulo da pochi secondi con i dati che ci aiuteranno a personalizzare il dialogo.
 2. **Ricevi subito il tuo link personale.** Compare appena invii il modulo e arriva anche via email. Lo apri quando vuoi: dal primo accesso hai due ore per completare il questionario.
@@ -93,7 +94,8 @@ Non un form che finisce in un CRM e basta: un percorso che si costruisce sulle t
     { who: 'Tu', text: 'Sì, soprattutto a ridosso delle scadenze fiscali.' },
     { who: 'Questionario', text: 'Allora concentriamoci lì. In un mese tipico, quante persone dello studio finiscono a rincorrere documenti che i clienti non hanno ancora mandato?' },
   ]}
-  caption="Anteprima: esempio illustrativo di conversazione. Il questionario reale non è consultabile in questa pagina."
+  label="Esempio: così si svolge il questionario"
+  caption="Conversazione illustrativa: nel questionario vero le domande cambiano in base a quello che racconti. Il questionario reale non è consultabile in questa pagina."
 />
 
 ## Per essere chiari fino in fondo
